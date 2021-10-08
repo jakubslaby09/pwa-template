@@ -1,0 +1,15 @@
+{
+  "name": "pwa-template",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "postcss-load-config": "^3.1.0",
+    "postcss-nested": "^5.0.6",
+    "typescript": "^4.3.2",
+    "vite": "^2.5.4"
+  }
+}
