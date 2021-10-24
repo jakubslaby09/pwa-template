@@ -10,7 +10,11 @@
   <body x-data="{  }">
     <header icon="search">
       <input type="text" placeholder="Hledat">
-      <button x-on:click="light = !light">light</button>
+      <button 
+        icon
+        x-on:click="light = !light"
+        x-text="light ? 'light_mode' : 'dark_mode'"
+      />
     </header>
     <nav>
       <a page="home" icon="home">Home</a>

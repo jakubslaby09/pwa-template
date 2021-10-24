@@ -1,16 +1,17 @@
 header {
     position: absolute;
+    display: flex;
     top: 0;
     left: 0;
     right: 0;
     margin: 0.5rem;
-    padding: 1rem;
-    padding-left: 3rem;
+    padding: 1rem 0 1rem 1rem;
     border-radius: var(--border-radius);
     background-color: var(--surface);
-    font-weight: 600;
+    font-size: 1.2rem;
     color: #888;
     user-select: none;
+    cursor: default;
 
     input {
         background: none;
@@ -20,24 +21,24 @@ header {
         font-size: inherit;
         font-weight: inherit;
         font-family: inherit;
+        flex: 100%;
+        padding-left: 3rem;
+        margin-left: -2.5rem;
+        z-index: 1;
     }
-
-    /* &:focus-within {
-        &::before {
-            content: 'close';
-            cursor: pointer;
-        }
-    } */
 
     &::before {
         content: attr(icon);
-        position: absolute;
-        left: 0.5rem;
-        top: 0.8rem;
         font-family: 'Material Icons';
+    }
+    
+    &::before, button[icon] {
+        margin: auto;
         font-weight: 400;
         font-size: 2rem;
+        line-height: 0;
         filter: contrast(2);
+        overflow: visible;
     }
 
     ~ #main {

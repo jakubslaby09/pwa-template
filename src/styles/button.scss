@@ -9,6 +9,18 @@ button {
     font-size: 0.9rem;
     text-transform: uppercase;
 
+    &[icon] {
+        text-transform: unset;
+        font-family: 'Material Icons';
+        background-color: #0000;
+        color: currentColor;
+        padding: 1rem;
+        margin: -0.5rem 0;
+        border-radius: 50%;
+        box-shadow: unset;
+        outline: none;
+    }
+
     &[secondary] {
         background-color: var(--secondary);
         color: var(--on-secondary);

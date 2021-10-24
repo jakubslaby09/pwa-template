@@ -15,7 +15,6 @@ const modifications: Modification[] = [
     {
         if: conditions.ripple,
         then(e) {
-            console.log(e);
             e.addEventListener('pointerdown', () => ripple(e))
             e.addEventListener('keydown', event => {
                 if((event as KeyboardEvent).key == 'Enter')
