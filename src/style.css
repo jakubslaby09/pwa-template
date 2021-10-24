@@ -4,6 +4,7 @@
 @import "styles/nav.scss";
 @import "styles/ripple.scss";
 @import "styles/topbar.scss";
+@import "styles/button.scss";
 
 :root {
   --background: #000;

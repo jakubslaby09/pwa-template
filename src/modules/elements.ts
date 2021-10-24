@@ -2,6 +2,10 @@ const conditions = {
     ripple(e: Element) {
         return e.getAttribute('ripple') != null
             || e.getAttribute('page') != null
+            || e.nodeName == 'BUTTON'
+            /* || (e.nodeName == 'INPUT'
+                && e.getAttribute('type') == 'submit'
+            ) */
             || false
     }
 }
@@ -11,17 +15,22 @@ const modifications: Modification[] = [
         if: conditions.ripple,
         then(e) {
             console.log(e);
-            e.addEventListener('pointerdown', () => {
-                e.removeAttribute('afterclick')
-                setTimeout(() => 
-                    e.setAttribute('afterclick', '')
-                , 0)
+            e.addEventListener('pointerdown', () => ripple(e))
+            e.addEventListener('keydown', event => {
+                if((event as KeyboardEvent).key == 'Enter')
+                    ripple(e, 10)
             })
         }
     }
 ]
 
 
+function ripple(element: Element, delay: number = 0) {
+    element.removeAttribute('afterclick')
+                setTimeout(() => 
+                    element.setAttribute('afterclick', '')
+                , delay)
+}
 
 interface Modification {
     if: (e: Element) => boolean

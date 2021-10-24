@@ -1,5 +1,9 @@
-[ripple], nav > * {
+[ripple], nav > *, 
+button, input[type="submit"] {
     overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    -webkit-tap-highlight-color:  #0000;
   
     &::after {
       content: '';

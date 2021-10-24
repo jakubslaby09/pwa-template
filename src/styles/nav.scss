@@ -15,7 +15,6 @@ nav {
     border-top-right-radius: var(--border-radius);
     user-select: none;
     overflow: hidden;
-    -webkit-tap-highlight-color:  #0000;
   
     > [page] {
       transition: transform 0.3s cubic-bezier(0, 1, 0, 1);
