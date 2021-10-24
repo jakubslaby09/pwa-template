@@ -1,0 +1,32 @@
+[ripple], nav > * {
+    overflow: hidden;
+  
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, #8884 10%, #0000 10%);
+      transform: scale(0);
+      pointer-events: none;
+    }
+  
+    &[afterclick] {
+      &::after {
+        animation: ripple 1s forwards;
+      }
+    }
+  }
+  
+  @keyframes ripple {
+    from {
+      transform: scale(0);
+    }
+    25% {
+      transform: scale(10);
+      opacity: 1;
+    }
+    to {
+      transform: scale(10);
+      opacity: 0;
+    }
+  }

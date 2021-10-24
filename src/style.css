@@ -1,9 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+@import "styles/nav.scss";
+@import "styles/ripple.scss";
+@import "styles/topbar.scss";
+
 :root {
   --background: #000;
   --on-background: #fff;
   --surface: #222;
+  --on-surface: #fff;
   --border-radius: 0.5rem;
 }
 html {
@@ -15,83 +21,4 @@ html {
   position: absolute;
   border: none;
   inset: 0;
-  bottom: 4rem;
-}
-nav {
-  position: absolute;
-  display: flex;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 4rem;
-  padding: 0.5rem 0;
-  justify-content: space-around;
-  background-color: var(--surface);
-  border-top-left-radius: var(--border-radius);
-  border-top-right-radius: var(--border-radius);
-  user-select: none;
-  overflow: hidden;
-  -webkit-tap-highlight-color:  #0000;
-
-  > [page] {
-    transition: transform 0.3s cubic-bezier(0, 1, 0, 1);
-    position: relative;
-    width: 100%;
-    height: 100%;
-    padding-top: 2rem;
-    text-align: center;
-    font-size: 1em;
-    font-weight: 600;
-    overflow: visible;
-
-    &[active] {
-      transform: scale(1.1);
-    }
-
-    &::before {
-      content: attr(icon);
-      position: absolute;
-      top: 0.5rem;
-      right: 0;
-      left: 0;
-      font-family: 'Material Icons';
-      font-size: 1.2em;
-      font-weight: 400;
-    }
-  }
-}
-[page] {
-  cursor: pointer;
-}
-[ripple], nav > * {
-  overflow: hidden;
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle, #8884 10%, #0000 10%);
-    transform: scale(0);
-    pointer-events: none;
-  }
-
-  &[afterclick] {
-    &::after {
-      animation: ripple 1s forwards;
-    }
-  }
-}
-
-@keyframes ripple {
-  from {
-    transform: scale(0);
-  }
-  25% {
-    transform: scale(10);
-    opacity: 1;
-  }
-  to {
-    transform: scale(10);
-    opacity: 0;
-  }
 }
