@@ -8,4 +8,12 @@ nav.forEach(link => link.addEventListener('click', async () => {
 
 export async function page(page: string) {
   main!.innerHTML = await (await fetch(`/views/${page}.html`)).text()
+
+  // 'active' attributes
+  document.querySelectorAll('[page]').forEach(
+    e => e.getAttribute('page') == page
+      ? e.setAttribute('active', '')
+      : e.removeAttribute('active')
+  )
+  
 }
