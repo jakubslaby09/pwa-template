@@ -3,6 +3,7 @@ const conditions = {
         return e.getAttribute('ripple') != null
             || e.getAttribute('page') != null
             || e.nodeName == 'BUTTON'
+            || e.nodeName == 'HEADER'
             /* || (e.nodeName == 'INPUT'
                 && e.getAttribute('type') == 'submit'
             ) */

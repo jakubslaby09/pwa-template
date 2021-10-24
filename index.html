@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" x-data="{ light: false }" :light="light">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -10,6 +10,7 @@
   <body x-data="{  }">
     <header icon="search">
       <input type="text" placeholder="Hledat">
+      <button x-on:click="light = !light">light</button>
     </header>
     <nav>
       <a page="home" icon="home">Home</a>
