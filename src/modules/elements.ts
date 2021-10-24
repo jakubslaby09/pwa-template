@@ -1,7 +1,7 @@
 const conditions = {
     ripple(e: Element) {
-        return !!e.getAttribute('ripple')
-            || !!e.getAttribute('page')
+        return e.getAttribute('ripple') != null
+            || e.getAttribute('page') != null
             || false
     }
 }
@@ -48,4 +48,9 @@ function initnode(element: Element) {
     modifications.forEach(m => {
         if(m.if(element)) m.then(element)
     })
+
+    for(const i in element.children) {
+        const child = element.children[i]
+        if(!!child.getAttribute) initnode(child)
+    }
 }
