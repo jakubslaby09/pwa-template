@@ -37,8 +37,9 @@ header {
         font-weight: 400;
         font-size: 2rem;
         line-height: 0;
-        filter: contrast(2);
+        color: var(--on-surface);
         overflow: visible;
+        z-index: 1;
     }
 
     ~ #main {

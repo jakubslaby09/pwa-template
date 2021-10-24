@@ -1,17 +1,22 @@
 [ripple], nav > *, header, 
 button, input[type="submit"] {
-    overflow: hidden;
-    position: relative;
-    cursor: pointer;
-    -webkit-tap-highlight-color:  #0000;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  -webkit-tap-highlight-color:  #0000;
   
     &::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle, #8884 10%, #0000 10%);
+      background: radial-gradient(
+        circle,
+        currentColor 10%,
+        #0000 calc(10% + 0.2px /* smooth out pixels */)
+      );
       transform: scale(0);
       pointer-events: none;
+      opacity: 0.25;
     }
   
     &[afterclick] {
@@ -27,7 +32,7 @@ button, input[type="submit"] {
     }
     25% {
       transform: scale(10);
-      opacity: 1;
+      opacity: 0.25;
     }
     to {
       transform: scale(10);

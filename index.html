@@ -14,7 +14,9 @@
         icon
         x-on:click="light = !light"
         x-text="light ? 'light_mode' : 'dark_mode'"
+        :rotate="light"
       />
+      <button icon>more_vert</button>
     </header>
     <nav>
       <a page="home" icon="home">Home</a>

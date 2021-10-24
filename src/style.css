@@ -12,9 +12,9 @@ html {
     background-color 0.5s cubic-bezier(0, 0, 0, 1),
     color 0.5s cubic-bezier(0, 0, 0, 1);
   --background: #000;
-  --on-background: #fff;
+  --on-background: #ddd;
   --surface: #222;
-  --on-surface: #fff;
+  --on-surface: #ddd;
   --border-radius: 0.5rem;
   --primary: #1778e4;
   --on-primary: #fff;

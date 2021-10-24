@@ -5,16 +5,18 @@
         <p>a div with ripple</p>
     </div>
 </section>
-<section id="buttons">
+<section id="buttons" x-data="{rotate-example: false}">
     <h2>Buttons</h2>
     <button>Default</button>
+    <button secondary>Secondary</button>
+    <button icon>favorite</button>
 </section>
 <section id="themes">
     <h2>Dark & Light themes</h2>
-    <button onclick="document.documentElement.setAttribute('light', '')">
+    <button secondary onclick="document.documentElement.setAttribute('light', '')">
         Light
     </button>
-    <button onclick="document.documentElement.removeAttribute('light')">
+    <button secondary onclick="document.documentElement.removeAttribute('light')">
         Dark
     </button>
 </section>
