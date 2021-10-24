@@ -1,5 +1,5 @@
 header {
-    position: absolute;
+    position: fixed;
     display: flex;
     top: 0;
     left: 0;
@@ -12,6 +12,7 @@ header {
     color: #888;
     user-select: none;
     cursor: default;
+    z-index: 1;
 
     input {
         background: none;

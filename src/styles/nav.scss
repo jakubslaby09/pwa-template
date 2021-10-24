@@ -2,7 +2,7 @@
     cursor: pointer;
 }
 nav {
-    position: absolute;
+    position: fixed;
     display: flex;
     bottom: 0;
     left: 0;
@@ -15,6 +15,7 @@ nav {
     border-top-right-radius: var(--border-radius);
     user-select: none;
     overflow: hidden;
+    z-index: 1;
   
     > [page] {
       transition: transform 0.3s cubic-bezier(0, 1, 0, 1);
