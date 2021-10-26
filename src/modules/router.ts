@@ -10,6 +10,7 @@ links.forEach(link => link.addEventListener('click', async () => {
 }))
 
 export async function page(page: string) {
+  main?.removeAttribute('afterload')
   main!.innerHTML = await request(`/views/${page}.html`)
 
   // 'active' attributes
@@ -18,6 +19,7 @@ export async function page(page: string) {
       ? e.setAttribute('active', '')
       : e.removeAttribute('active')
   )
+  main?.setAttribute('afterload', '')
 }
 
 async function request(url: string) {
