@@ -17,10 +17,12 @@ button {
         font-size: 1.5rem;
         background-color: #0000;
         color: currentColor;
-        padding: 1rem;
+        padding: 0.5rem;
+        margin: 0.6rem;
         border-radius: 50%;
         box-shadow: unset;
         outline: none;
+        overflow: visible;
 
         &[rotate] {
             transform: rotate(360deg);
