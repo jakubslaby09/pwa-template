@@ -19,10 +19,27 @@ button {
         color: currentColor;
         padding: 0.5rem;
         margin: 0.6rem;
-        border-radius: 50%;
+        //border-radius: 50%;
         box-shadow: unset;
         outline: none;
         overflow: visible;
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: -1.4rem;
+            overflow: visible;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        &:hover::before {
+            background: radial-gradient(
+                circle,
+                #8884 49%,
+                #0000 50%
+            );
+        }
 
         &[rotate] {
             transform: rotate(360deg);

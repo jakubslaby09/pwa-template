@@ -37,3 +37,11 @@ html[light] {
   border: none;
   inset: 1rem;
 }
+
+::-webkit-scrollbar {
+  width: 1px;
+  background-color: #0000;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #8888;
+}
