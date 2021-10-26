@@ -1,0 +1,52 @@
+nav {
+    transition: background-position-y 0.3s ease-in-out;
+    background-position-y: -0.1rem;
+    &[loading] {
+        background: linear-gradient(
+            var(--primary) 0.2rem,
+            var(--surface) 0.2rem
+        );
+        background-position-y: unset;
+        
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            height: 0.2rem;
+            background-color: #fff8;
+            background-blend-mode: screen;
+            
+            animation: loading 2s linear infinite;
+        }
+    }
+}
+@keyframes loading {
+    from {
+        left: 0;
+        right: 100%;
+    }
+    25% {
+        left: 0;
+        right: 25%;
+    }
+    50% {
+        left: 50%;
+        right: 0;
+    }
+    70% {
+        left: 100%;
+        right: 0;
+    }
+    71% {
+        left: 0;
+        right: 100%;
+    }
+    85% {
+        left: 50%;
+        right: 0;
+    }
+    to {
+        left: 100%;
+        right: 0;
+    }
+}

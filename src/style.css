@@ -6,6 +6,7 @@
 @import "styles/topbar.scss";
 @import "styles/button.scss";
 @import "styles/shadow.scss";
+@import "styles/loading.scss";
 
 html {
   transition: 
