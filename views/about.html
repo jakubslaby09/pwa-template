@@ -5,11 +5,17 @@
         <p>a div with ripple</p>
     </div>
 </section>
-<section id="buttons">
+<section id="buttons" x-data="{ rotate: false }">
     <h2>Buttons</h2>
     <button>Default</button>
     <button secondary>Secondary</button>
     <button icon>favorite</button>
+    <button
+        icon
+        :rotate="rotate"
+        x-on:click="rotate = !rotate"
+        x-text="rotate ? 'sync_problem' : 'sync'"
+    />
 </section>
 <section id="themes">
     <h2>Dark & Light themes</h2>
