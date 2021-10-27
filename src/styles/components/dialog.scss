@@ -1,6 +1,6 @@
 dialog {
     /* position: absolute; */
-    inset: calc(50vh - 10rem) calc(50vw - 12rem);
+    inset: calc(50vh - 20rem) calc(50vw - 15rem);
     width: auto;
     padding: 0;
     border: none;
@@ -22,7 +22,8 @@ dialog {
         > * {
             display: block;
             margin: 0;
-            padding: 0.5rem 1rem;
+            padding: 1rem 1rem;
+            font-size: 1.2rem;
 
             &:not(:last-child) {
                 display: block;
