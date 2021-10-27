@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons&display=swap');
 
-@import "styles/nav.scss";
-@import "styles/ripple.scss";
-@import "styles/topbar.scss";
-@import "styles/button.scss";
-@import "styles/shadow.scss";
-@import "styles/loading.scss";
+@import "styles/effects/ripple.scss";
+@import "styles/effects/shadow.scss";
+@import "styles/effects/loading.scss";
+@import "styles/components/nav.scss";
+@import "styles/components/topbar.scss";
+@import "styles/components/button.scss";
+
 
 html {
   display: initial !important; /* CLS */
