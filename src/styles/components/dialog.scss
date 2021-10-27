@@ -1,0 +1,82 @@
+dialog {
+    /* position: absolute; */
+    inset: calc(50vh - 10rem) calc(50vw - 12rem);
+    width: auto;
+    padding: 0;
+    border: none;
+    border-radius: var(--border-radius);
+    color: var(--on-surface);
+    background-color: var(--surface);
+    box-shadow: #0008 0 0 0 max(50vw, 50vh);
+    z-index: 1;
+
+    [scrim] {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        cursor: pointer;
+    }
+
+    &[appmenu] {
+        > * {
+            display: block;
+            margin: 0;
+            padding: 0.5rem 1rem;
+
+            &:not(:last-child) {
+                display: block;
+                border-bottom: 1px solid #888;
+            }
+        }
+
+        [scrim] {
+            border-bottom: none;
+        }
+
+        [icon]:not([icon=""]){
+            padding-left: 3rem;
+
+            &::before {
+                content: attr(icon);
+                position: absolute;
+                left: 0.75rem;
+                font-family: 'Material Icons';
+                font-size: 1.3rem;
+            }
+        }
+        > title:first-of-type {
+            display: block;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-bottom: none;
+            padding-bottom: 1rem;
+        }
+        > footer {
+            text-align: center;
+            font-size: 0.8rem;
+        }
+        > button {
+            width: 100%;
+            border-radius: 0;
+            color: var(--on-surface);
+            background-color: transparent;
+            box-shadow: none;
+            text-align: unset;
+            text-transform: none;
+        }
+    }
+
+    &[open] {
+        animation: dialog-open 0.3s cubic-bezier(0, 1, 0, 1) forwards;
+    }
+
+}
+
+@keyframes dialog-open {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+}

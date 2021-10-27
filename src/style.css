@@ -7,7 +7,7 @@
 @import "styles/components/nav.scss";
 @import "styles/components/topbar.scss";
 @import "styles/components/button.scss";
-
+@import "styles/components/dialog.scss";
 
 html {
   display: initial !important; /* CLS */

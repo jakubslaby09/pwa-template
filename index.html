@@ -1,5 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" x-data="{ light: false }" :light="light" style="display: none; /* CLS */">
+<html
+  lang="en"
+  x-data="{ 
+    light: false,
+    appmenu: false,
+  }"
+  :light="light"
+  style="display: none; /* CLS */"
+>
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -18,13 +26,23 @@
         x-text="light ? 'light_mode' : 'dark_mode'"
         :rotate="light"
       />
-      <button icon>more_vert</button>
+      <button icon x-on:click="appmenu = true">more_vert</button>
     </header>
     <nav>
       <a page="home" icon="home">Home</a>
       <a page="about" icon="notes">About project</a>
     </nav>
     <main id="main"></main>
+    <dialog appmenu :open="appmenu">
+      <div scrim x-on:click="appmenu = false"></div>
+      <title>Example Title</title>
+      <p icon="notes">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil, deleniti.</p>
+      <p icon="info">Lorem, ipsum dolor.</p>
+      <button>Settings & Preferences</button>
+      <footer>
+        &copy; Jakub Slabý &bullet; 2021
+      </footer>
+    </dialog>
     <script type="module" src="/src/main.ts" defer></script>
   </body>
 </html>
