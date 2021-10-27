@@ -3,7 +3,7 @@ const nav = document.querySelector('body > nav')
 const links = document.querySelectorAll('body > nav > [page]')
 
 caches.delete('pages') // reset on reload
-const cache = await caches.open('pages')
+const cache = /* await */ caches.open('pages')
 
 links.forEach(link => link.addEventListener('click', async () => {
   await page(link.getAttribute('page')!)
@@ -23,13 +23,13 @@ export async function page(page: string) {
 }
 
 async function request(url: string) {
-  let res = await cache.match(url)
+  let res = await (await cache).match(url)
   if(!res) {
     console.log(`%c Downloading ${url}`, 'color: royalblue')
     nav?.setAttribute('loading', '')
-    await cache.put(url, await fetch(url))
+    await (await cache).put(url, await fetch(url))
     nav?.removeAttribute('loading')
-    res = (await cache.match(url))!
+    res = (await (await cache).match(url))!
   }
   
   return await res.text()
