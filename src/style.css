@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons&display=swap');
 
 @import "styles/nav.scss";
 @import "styles/ripple.scss";
@@ -9,6 +9,7 @@
 @import "styles/loading.scss";
 
 html {
+  display: initial !important; /* CLS */
   transition: 
     background-color 0.5s cubic-bezier(0, 0, 0, 1),
     color 0.5s cubic-bezier(0, 0, 0, 1);
