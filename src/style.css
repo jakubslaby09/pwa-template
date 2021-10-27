@@ -36,7 +36,9 @@ html[light] {
 #main {
   position: absolute;
   border: none;
-  inset: 1rem;
+  inset: 0;
+  padding: 1rem;
+  overflow-x: hidden;
 }
 #main[afterload] {
   animation: main-load 0.5s cubic-bezier(0, 0.7, 0, 1) forwards;
@@ -54,9 +56,10 @@ html[light] {
 }
 
 ::-webkit-scrollbar {
-  width: 1px;
-  background-color: #0000;
+  width: 0.25rem;
+  background-color: #8884;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #8888;
+  border-radius: 0.125rem;
+  background-color: #8884;
 }
