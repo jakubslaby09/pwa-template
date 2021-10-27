@@ -22,8 +22,9 @@ dialog {
         > * {
             display: block;
             margin: 0;
-            padding: 1rem 1rem;
-            font-size: 1.2rem;
+            padding: 1.2rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
 
             &:not(:last-child) {
                 display: block;
@@ -36,12 +37,13 @@ dialog {
         }
 
         [icon]:not([icon=""]){
-            padding-left: 3rem;
+            padding-left: 3.7rem;
 
             &::before {
                 content: attr(icon);
                 position: absolute;
-                left: 0.75rem;
+                left: 1.5rem;
+                margin-top: 0.05rem;
                 font-family: 'Material Icons';
                 font-size: 1.3rem;
             }

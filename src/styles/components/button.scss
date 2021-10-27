@@ -3,14 +3,26 @@ button {
     color: var(--on-primary);
     border: none;
     border-radius: 0.25rem;
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
     font-family: inherit;
     font-weight: 600;
     font-size: 0.9rem;
     text-transform: uppercase;
     vertical-align: middle;
 
-    &[icon] {
+    &[secondary] {
+        background-color: var(--secondary);
+        color: var(--on-secondary);
+    }
+
+    &[icon]:not([icon=""]) {
+        &::before {
+            content: attr(icon);
+            font-family: 'Material Icons';
+        }
+    }
+
+    &[icon=""] {
         transition: transform 0.5s cubic-bezier(0, 1, 0, 1);
         text-transform: unset;
         font-family: 'Material Icons';
@@ -43,10 +55,5 @@ button {
         &[rotate] {
             transform: rotate(360deg);
         }
-    }
-
-    &[secondary] {
-        background-color: var(--secondary);
-        color: var(--on-secondary);
     }
 }
