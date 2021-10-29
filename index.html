@@ -33,12 +33,21 @@
       <a page="about" icon="notes">About project</a>
     </nav>
     <main id="main"></main>
-    <dialog appmenu :open="appmenu">
+    <dialog appmenu :active="appmenu">
       <div scrim x-on:click="appmenu = false"></div>
       <title>Menu Title</title>
-      <p icon="notes">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil, deleniti.</p>
-      <p icon="info">Lorem, ipsum dolor.</p>
-      <button icon="settings">Settings & Preferences</button>
+      <div icon="notes">
+        <title>Some notes</title>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil, deleniti.</p>
+      </div>
+      <div icon="info">
+        <p>Lorem, ipsum dolor.</p>
+      </div>
+      <div>
+        <button icon="settings">Settings & Preferences</button>
+        <button icon="help_outline">Help & Feedback</button>
+        <button icon="analytics">Project Licence</button>
+      </div>
       <footer>
         &copy; Jakub Slabý &bullet; 2021
       </footer>

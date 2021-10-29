@@ -1,13 +1,18 @@
 dialog {
     /* position: absolute; */
-    inset: calc(50vh - 20rem) calc(50vw - 15rem);
+    transition: 
+        transform 0.3s cubic-bezier(0, 1, 0, 1),
+        opacity 0.3s cubic-bezier(0, 1, 0, 1);
+    inset: 
+        calc(50vh - 20rem)
+        max(calc(50vw - 15rem), 2rem);
     width: auto;
     padding: 0;
     border: none;
     border-radius: var(--border-radius);
     color: var(--on-surface);
     background-color: var(--surface);
-    box-shadow: #0008 0 0 0 max(50vw, 50vh);
+    box-shadow: #0008 0 0 0 max(100vw, 100vh);
     z-index: 1;
 
     [scrim] {
@@ -30,13 +35,42 @@ dialog {
                 display: block;
                 border-bottom: 1px solid #888;
             }
+
+            > * {
+                margin: 0;
+                
+                &:not(:first-child):not(button) {
+                    filter: brightness(0.5);
+                    font-weight: 400;
+                }
+                
+                &[icon]:not([icon=""]) {
+                    margin-left: -1.5rem;
+                }
+            }
+            
+            button:first-child {
+                margin-top: -1.2rem;
+            }
+
+            button:last-child {
+                margin-bottom: -1.2rem;
+            }
+
+            p {
+                margin: 0;
+            }
+        
+            title {
+                display: inline;
+            }
         }
 
         [scrim] {
             border-bottom: none;
         }
 
-        [icon]:not([icon=""]){
+        [icon]:not([icon=""]) {
             padding-left: 3.7rem;
 
             &::before {
@@ -45,6 +79,7 @@ dialog {
                 left: 1.5rem;
                 margin-top: 0.05rem;
                 font-family: 'Material Icons';
+                font-weight: 500;
                 font-size: 1.3rem;
             }
         }
@@ -60,7 +95,7 @@ dialog {
             text-align: center;
             font-size: 0.8rem;
         }
-        > button {
+        > button, > * > button {
             width: 100%;
             border-radius: 0;
             color: var(--on-surface);
@@ -71,15 +106,28 @@ dialog {
         }
     }
 
-    &[open] {
+    /* &[active] {
         animation: dialog-open 0.3s cubic-bezier(0, 1, 0, 1) forwards;
-    }
+    } */
 
-}
-
-@keyframes dialog-open {
-    from {
+    &:not([active]) {
+        transition: 
+            transform 0.6s cubic-bezier(0, 1, 1, 0),
+            opacity 0.3s linear;
         transform: scale(0);
         opacity: 0;
     }
 }
+
+/* @keyframes dialog-open {
+    from {
+        transform: scale(0) translateY(-20vh);
+        opacity: 0;
+    }
+}
+@keyframes dialog-close {
+    to {
+        transform: scale(0);
+        opacity: 0;
+    }
+} */

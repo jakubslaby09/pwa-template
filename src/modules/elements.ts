@@ -8,6 +8,9 @@ const conditions = {
                 && e.getAttribute('type') == 'submit'
             ) */
             || false
+    },
+    dialog(e: Element) {
+        return e.nodeName == 'DIALOG'
     }
 }
 
@@ -20,6 +23,12 @@ const modifications: Modification[] = [
                 if((event as KeyboardEvent).key == 'Enter')
                     ripple(e, 10)
             })
+        }
+    },
+    {
+        if: conditions.dialog,
+        then(e) {
+            e.setAttribute('open', '')
         }
     }
 ]
