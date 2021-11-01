@@ -16,6 +16,37 @@ button {
         color: var(--on-secondary);
     }
 
+    &[outlined], &[outline], &[text] {
+        --color: var(--primary);
+        background-color: transparent;
+        outline: solid var(--color) 0.05rem;
+        outline-offset: -0.05rem;
+        color: var(--color);
+        box-shadow: none;
+
+        &::after {
+            color: var(--color);
+            opacity: 0.5;
+        }
+
+        &[afterclick]::after {
+            animation: ripple 1s cubic-bezier(0, 0.8, 1, 1) forwards;
+        }
+
+        &[secondary] {
+            --color: var(--secondary);
+        }
+    }
+
+    &[text] {
+        outline: none;
+    }
+
+    &:disabled {
+        filter: saturate(0) brightness(0.5);
+        box-shadow: none;
+    }
+
     &[icon]:not([icon=""]) {
         &::before {
             content: attr(icon);

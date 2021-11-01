@@ -19,9 +19,15 @@ button, input[type="submit"] {
       opacity: 0.25;
     }
   
-    &[afterclick] {
-      &::after {
+    &[afterclick]::after {
         animation: ripple 1s forwards;
+    }
+
+    &:disabled {
+      cursor: unset;
+
+      &::after {
+          display: none;
       }
     }
   }
