@@ -1,36 +1,37 @@
-const main = document.querySelector('body > main')
-const nav = document.querySelector('body > nav')
-const links = document.querySelectorAll('body > nav > [page]')
-
-caches.delete('pages') // reset on reload
-const cache = /* await */ caches.open('pages')
-
-links.forEach(link => link.addEventListener('click', async () => {
-  await page(link.getAttribute('page')!)
-}))
-
-export async function page(page: string) {
-  main?.removeAttribute('afterload')
-  main!.innerHTML = await request(`/views/${page}.html`)
-
-  // 'active' attributes
-  document.querySelectorAll('[page]').forEach(
-    e => e.getAttribute('page') == page
-      ? e.setAttribute('active', '')
-      : e.removeAttribute('active')
-  )
-  main?.setAttribute('afterload', '')
+const elements = {
+    main: document.querySelector('body > main') as HTMLElement,
+    nav: document.querySelector('body > nav') as HTMLElement,
+    links: document.querySelectorAll('body > nav > [page]'),
 }
+
+self.caches?.delete('pages') // delete on refresh
+
+export async function go(page: string) {
+    elements.main.removeAttribute('afterload')
+    elements.main.innerHTML = await request(`/views/${page}.html`)
+    
+    document.querySelectorAll('[page]').forEach(
+        e => e.getAttribute('page') == page
+            ? e.setAttribute('active', '')
+            : e.removeAttribute('active')
+    )
+    elements.main.setAttribute('afterload', '')
+}
+
+elements.links.forEach(link => 
+    link.addEventListener('click', () => go(link.getAttribute('page')!))
+)
 
 async function request(url: string) {
-  let res = await (await cache).match(url)
-  if(!res) {
-    console.log(`%c Downloading ${url}`, 'color: royalblue')
-    nav?.setAttribute('loading', '')
-    await (await cache).put(url, await fetch(url))
-    nav?.removeAttribute('loading')
-    res = (await (await cache).match(url))!
-  }
-  
-  return await res.text()
+    const cache = await self.caches?.open('pages') as Cache | undefined // compatibility
+    let res = await cache?.match(url)
+    if(!res) {
+        console.log(`%cDownloading ${url}`, 'color: royalblue')
+        elements.nav.setAttribute('loading', '')
+        res = await fetch(url)
+        cache?.put(url, res.clone())
+        setTimeout(() => elements.nav.removeAttribute('loading'), 200)
+    }
+    return await res.text()
 }
+//document.body.style.whiteSpace = 'pre'

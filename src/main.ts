@@ -1,5 +1,6 @@
-import { page } from './modules/router'
-import './modules/elements'
 import './style.css'
+import './modules/elements'
+import './modules/router'
+import { go } from './modules/router'
 
-page('home')
+go('home')
