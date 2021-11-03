@@ -30,8 +30,7 @@ async function request(url: string) {
         elements.nav.setAttribute('loading', '')
         res = await fetch(url)
         cache?.put(url, res.clone())
-        setTimeout(() => elements.nav.removeAttribute('loading'), 200)
+        elements.nav.removeAttribute('loading')
     }
     return await res.text()
 }
-//document.body.style.whiteSpace = 'pre'
