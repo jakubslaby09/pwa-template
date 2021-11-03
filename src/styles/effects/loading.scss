@@ -1,11 +1,12 @@
 nav {
-    transition: background-position-y 0.3s ease-in-out;
-    background-position-y: -0.1rem;
+    transition: background-position-y 0.2s cubic-bezier(0, 0, 0, 1);
+    background: linear-gradient(
+        var(--primary) 0.2rem,
+        var(--surface) 0.2rem
+    );
+    background-position-y: -0.2rem;
+    background-repeat: no-repeat;
     &[loading] {
-        background: linear-gradient(
-            var(--primary) 0.2rem,
-            var(--surface) 0.2rem
-        );
         background-position-y: unset;
         
         &::after {
