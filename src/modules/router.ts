@@ -1,3 +1,5 @@
+import { navigate } from "./sound"
+
 const elements = {
     main: document.querySelector('body > main') as HTMLElement,
     nav: document.querySelector('body > nav') as HTMLElement,
@@ -18,9 +20,10 @@ export async function go(page: string) {
     elements.main.setAttribute('afterload', '')
 }
 
-elements.links.forEach(link => 
-    link.addEventListener('click', () => go(link.getAttribute('page')!))
-)
+elements.links.forEach(link => link.addEventListener('click', () => {
+    go(link.getAttribute('page')!)
+    navigate()
+}))
 
 async function request(url: string) {
     const cache = await self.caches?.open('pages') as Cache | undefined // compatibility

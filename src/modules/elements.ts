@@ -1,3 +1,5 @@
+import { tap } from "./sound"
+
 const conditions = {
     ripple(e: Element) {
         return e.getAttribute('ripple') != null
@@ -35,10 +37,12 @@ const modifications: Modification[] = [
 
 
 function ripple(element: Element, delay: number = 0) {
+    if(element.getAttribute('disabled') != null) return
     element.removeAttribute('afterclick')
                 setTimeout(() => 
                     element.setAttribute('afterclick', '')
                 , delay)
+    tap()
 }
 
 interface Modification {

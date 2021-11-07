@@ -22,7 +22,7 @@
       <input type="text" placeholder="Search nothing">
       <button 
         icon
-        x-on:click="light = !light"
+        x-on:click="light = !light; sounds.shutter()"
         x-text="light ? 'light_mode' : 'dark_mode'"
         :rotate="light"
       />
@@ -45,7 +45,7 @@
       </div>
       <div>
         <button icon="settings">Settings & Preferences</button>
-        <button icon="update" :disabled="!window.caches" onclick="window.caches?.delete('pages')">
+        <button icon="update" :disabled="!window.caches" onclick="window.caches?.delete('pages'); sounds.refresh()">
           Clear Offline Caches
         </button>
         <button icon="analytics">Project Licence</button>
