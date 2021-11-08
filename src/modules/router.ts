@@ -6,7 +6,7 @@ const elements = {
     links: document.querySelectorAll('body > nav > [page]'),
 }
 
-self.caches?.delete('pages') // delete on refresh
+//self.caches?.delete('views') // delete on refresh
 
 export async function go(page: string) {
     elements.main.removeAttribute('afterload')
@@ -26,13 +26,12 @@ elements.links.forEach(link => link.addEventListener('click', () => {
 }))
 
 async function request(url: string) {
-    const cache = await self.caches?.open('pages') as Cache | undefined // compatibility
+    const cache = await self.caches?.open('views') as Cache | undefined // compatibility
     let res = await cache?.match(url)
+    
     if(!res) {
-        console.log(`%cDownloading ${url}`, 'color: royalblue')
         elements.nav.setAttribute('loading', '')
         res = await fetch(url)
-        cache?.put(url, res.clone())
         elements.nav.removeAttribute('loading')
     }
     return await res.text()
