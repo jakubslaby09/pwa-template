@@ -4,11 +4,13 @@ export const sounds = {
     refresh: new Audio('/sounds/refresh.wav'),
     shutter: new Audio('/sounds/shutter.wav'),
 }
+sounds.tap.volume = 0.5
 sounds.navForward.volume = 0.1
 sounds.shutter.volume = 0.05
 
-export function tap() {
-    sounds.tap.play()
+export async function tap() {
+    await sounds.tap.play()
+    //navigator.vibrate([0, 150, 5])
 }
 
 export function refresh() {
@@ -20,5 +22,6 @@ export function shutter() {
 }
 
 export function navigate(forward = true) {
+    navigator.vibrate(10)
     if(forward) sounds.navForward.play()
 }
