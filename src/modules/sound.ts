@@ -1,12 +1,8 @@
-function getSound(name: string) {
-    return new Audio(new URL(`../../sounds/${name}`, import.meta.url).href)
-}
-
 export const sounds = {
-    tap: getSound('tap1.wav'),
-    navForward: getSound('nav1.wav'),
-    refresh: getSound('refresh.wav'),
-    shutter: getSound('shutter.wav'),
+    tap: new Audio('sounds/tap1.wav'),
+    navForward: new Audio('sounds/nav1.wav'),
+    refresh: new Audio('sounds/refresh.wav'),
+    shutter: new Audio('sounds/shutter.wav'),
 }
 sounds.tap.volume = 0.5
 sounds.navForward.volume = 0.1

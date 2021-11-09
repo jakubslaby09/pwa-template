@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
       host: true,
   },
-  publicDir: './src/icons',
+  publicDir: './public',
   build: {
     target: 'es2021',
     outDir: resolve(__dirname, 'dist'),
@@ -20,7 +20,7 @@ export default defineConfig({
         ).map(file => resolve(__dirname, 'views', file)),
       ]
     },
-    assetsDir: '.',
+    assetsDir: 'bundle',
     assetsInlineLimit: 0,
   },
   plugins: [
@@ -38,19 +38,19 @@ export default defineConfig({
         "display": "standalone",
         "icons": [
             {
-              "src": "x48.png",
+              "src": "/icons/x48.png",
               "sizes": "48x48",
               "type": "image/png",
               "purpose": "maskable"
             },
             {
-              "src": "x192.png",
+              "src": "/icons/x192.png",
               "sizes": "192x192",
               "type": "image/png",
               "purpose": "maskable"
             },
             {
-              "src": "regular-x192.png",
+              "src": "/icons/regular-x192.png",
               "sizes": "192x192",
               "type": "image/png",
               "purpose": "any"
