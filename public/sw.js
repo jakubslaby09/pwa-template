@@ -1,10 +1,9 @@
-self.addEventListener('install', async () => {
-
+self.addEventListener('install', async e => {
+    e.skipWaiting()
 })
 
 self.addEventListener('fetch', event => {
     const req = event.request
-    console.log(req.url);
     if(req.method != 'GET') return
     
     
@@ -27,9 +26,21 @@ self.addEventListener('fetch', event => {
             console.log(`%cDownloading  ${req.url}`, 'color: royalblue');
             const res = await fetch(req)
             if(res.status != 206) cache[type].put(req, res.clone())
+            else console.log(`%c✖ cannot cache partial request ${req.url}`, 'color: orange');
             return res
         }
     }
     
     event.respondWith(respond())
+})
+
+self.addEventListener('message', async e => {
+    if(e.data == 'update') {
+        console.log('%cClearing caches', 'color: orange');
+        (await caches.keys()).forEach(key => {
+            caches.delete(key)
+            console.log(`%c✔️ cleared ${key}`, 'color: orange');
+        })
+        e.source.postMessage('update')
+    }
 })

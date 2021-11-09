@@ -46,7 +46,7 @@
       </div>
       <div>
         <button icon="settings">Settings & Preferences</button>
-        <button icon="update" :disabled="!window.caches" onclick="window.caches?.delete('pages'); sounds.refresh()">
+        <button icon="update" :disabled="!navigator.onLine" onclick="updateCaches(); sounds.refresh()">
           Clear Offline Caches
         </button>
         <button icon="analytics">Project Licence</button>

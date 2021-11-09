@@ -1,0 +1,18 @@
+const worker = location.port != '3000'
+    ? navigator.serviceWorker?.register('/sw.js')
+    : null
+
+navigator.serviceWorker.onmessage = e => {
+    if(e.data == 'update') {
+        location.reload()
+    }
+}
+
+const update = async () => {
+    if(!navigator.onLine) {
+        console.warn('%cCannot update caches while offline!', 'color: orange');
+        return
+    }
+    navigator.serviceWorker.controller?.postMessage('update')
+}
+(window as any).updateCaches = update
