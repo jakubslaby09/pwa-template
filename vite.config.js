@@ -23,40 +23,4 @@ export default defineConfig({
     assetsDir: 'bundle',
     assetsInlineLimit: 0,
   },
-  plugins: [
-    VitePWA({
-      injectRegister: 'inline',
-      mode: 'development',
-      workbox: {
-        globPatterns: [
-          "**\/*.{js,css,html,wav,png,svg}"
-        ]
-      },
-      manifest: {
-        "name": "PWA Template",
-        "start_url": "/",
-        "display": "standalone",
-        "icons": [
-            {
-              "src": "/icons/x48.png",
-              "sizes": "48x48",
-              "type": "image/png",
-              "purpose": "maskable"
-            },
-            {
-              "src": "/icons/x192.png",
-              "sizes": "192x192",
-              "type": "image/png",
-              "purpose": "maskable"
-            },
-            {
-              "src": "/icons/regular-x192.png",
-              "sizes": "192x192",
-              "type": "image/png",
-              "purpose": "any"
-            }
-        ]
-      },
-    })
-  ]
 })
