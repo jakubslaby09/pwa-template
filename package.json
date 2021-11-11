@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:gh-pages": "tsc && vite build --base=/pwa-template/",
     "serve": "vite preview"
   },
   "devDependencies": {
