@@ -8,9 +8,13 @@ header, body > header {
     padding: 0.7rem 0 0.7rem 1rem;
     border-radius: var(--border-radius);
     background-color: var(--surface);
-    color: #aaa;
+    color: var(--on-surface);
     user-select: none;
     cursor: default;
+
+    &::placeholder {
+        opacity: 0.63;
+    }
 
     main & {
         position: fixed;
