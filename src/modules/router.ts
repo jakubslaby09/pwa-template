@@ -44,10 +44,7 @@ function fixFetch() {
         if(input instanceof Request || !input.startsWith('/')) {
             return oldFetch(input, init)
         }
-        input = '.' + input
-        const path = new URL(input, location.href).href
-        
-        console.log(path, input);
+        const path = new URL('.' + input, location.href).href
         return oldFetch(path, init)
     }
 }
