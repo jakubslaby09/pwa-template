@@ -1,6 +1,6 @@
 {
   "name": "PWA Template",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "icons": [
       {
