@@ -1,3 +1,4 @@
+fixFetch()
 import { navigate } from "./sound"
 
 const elements = {
@@ -35,4 +36,18 @@ async function request(url: string) {
         elements.nav.removeAttribute('loading')
     }
     return await res.text()
+}
+
+function fixFetch() {
+    let oldFetch = window.fetch
+    window.fetch = (input: RequestInfo, init?: RequestInit) => {
+        if(input instanceof Request || !input.startsWith('/')) {
+            return oldFetch(input, init)
+        }
+        input = '.' + input
+        const path = new URL(input, location.href).href
+        
+        console.log(path, input);
+        return oldFetch(path, init)
+    }
 }
