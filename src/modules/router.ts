@@ -88,12 +88,15 @@ async function request(url: string) {
 }
 
 function fixFetch() {
-    let oldFetch = window.fetch
+    const oldFetch = window.fetch
+    const root = location.origin
+        + document.querySelector('head > link[rel="root"]')
+        ?.getAttribute('href') ?? '/'
     window.fetch = (input: RequestInfo, init?: RequestInit) => {
         if(input instanceof Request || !input.startsWith('/')) {
             return oldFetch(input, init)
         }
-        const path = new URL('.' + input, location.href).href
+        const path = new URL('.' + input, root).href
         return oldFetch(path, init)
     }
 }
