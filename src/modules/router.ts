@@ -1,5 +1,8 @@
 fixFetch()
+import { cleanup } from "./elements"
 import { navigate } from "./sound"
+
+//self.caches?.delete('views') // delete on refresh
 
 const elements = {
     main: document.querySelector('body > main') as HTMLElement,
@@ -8,34 +11,67 @@ const elements = {
     header: document.querySelector('body > header') as HTMLElement,
 }
 
-//self.caches?.delete('views') // delete on refresh
+export const stack = {
+    _values: [
+        {
+            _page: 'home',
+            get page() {
+                return this._page
+            },
+            set page(page) {
+                this._page = page
+                go(page)
+            },
+        },
+        
+    ] as string[] & [{ page: string, _page: string }],
+    
+    get first() {
+        return this._values.length == 1 ? this._values[0] : null
+    },
+    get current() {
+        if(this._values.length == 1) return this._values[0].page
+        return this._values[this._values.length - 1]
+    },
+    back() {
+        this._values.pop()
 
-export async function go(page: string) {
+        go(this.current)
+    },
+    async open(view: string) {
+        this._values.push(view)
+        console.log(this._values);
+
+        await go(view)
+        document.body.setAttribute('fullview', '')
+        cleanup()
+    
+        const viewheader = elements.main.querySelector('header')
+        if(viewheader) viewheader.innerHTML = 
+            `<button icon navback>arrow_back</button>` + viewheader?.innerHTML;
+        (viewheader?.querySelector('[navback]') as HTMLElement).onclick = () => this.back()
+    }
+};
+(window as any).stack = stack
+
+go(stack.current)
+
+async function go(view: string) {
     document.body.removeAttribute('fullview')
 
     elements.main.removeAttribute('afterload')
-    elements.main.innerHTML = await request(`/views/${page}.html`)
-    
+    elements.main.innerHTML = await request(`/views/${view}.html`)
+
     document.querySelectorAll('[page]').forEach(
-        e => e.getAttribute('page') == page
+        e => e.getAttribute('page') == view
             ? e.setAttribute('active', '')
             : e.removeAttribute('active')
     )
     elements.main.setAttribute('afterload', '')
 }
 
-export async function view(view: string) {
-    await go(view)
-    const title = elements.main.querySelector('header')?.getAttribute('title')
-    document.body.setAttribute('fullview', '')
-    const viewheader = elements.main.querySelector('header')
-    if(viewheader) viewheader.innerHTML = 
-        `<button icon navback>arrow_back</button>`
-        + viewheader?.innerHTML
-}
-
 elements.links.forEach(link => link.addEventListener('click', () => {
-    go(link.getAttribute('page')!)
+    if(stack.first) stack.first.page = link.getAttribute('page')!
     navigate()
 }))
 

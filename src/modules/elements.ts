@@ -1,4 +1,4 @@
-import { view } from "./router"
+import { stack } from "./router"
 import { tap } from "./sound"
 
 const conditions = {
@@ -43,7 +43,7 @@ const modifications: Modification[] = [
             e.onclick = (() => {
                 const name = e.getAttribute('view')
                 if(!name) return
-                view(name)
+                stack.open(name)
             })
         }
     }
@@ -57,6 +57,12 @@ function ripple(element: Element, delay: number = 0) {
                     element.setAttribute('afterclick', '')
                 , delay)
     tap()
+}
+
+export function cleanup() {
+    document.querySelectorAll('[afterclick]').forEach(
+        async e => e.removeAttribute('afterclick')
+    )
 }
 
 interface Modification {
