@@ -1,4 +1,7 @@
+const root = location.origin
+        + document.querySelector('head > link[rel="root"]')?.getAttribute('href') ?? '/'
 fixFetch()
+
 import { cleanup } from "./elements"
 import { navigate } from "./sound"
 
@@ -23,36 +26,31 @@ export const stack = {
                 go(page)
             },
         },
-        
+        ...location.href.replace(root, '').split('/').filter(view => view != '')
     ] as string[] & [{ page: string, _page: string }],
-    
     get first() {
         return this._values.length == 1 ? this._values[0] : null
     },
     get current() {
-        if(this._values.length == 1) return this._values[0].page
-        return this._values[this._values.length - 1]
+        return this.first?.page ?? this._values[this._values.length - 1]
     },
     back() {
+        if(this.first) return
         this._values.pop()
-
+        history.back()
         go(this.current)
     },
     async open(view: string) {
         this._values.push(view)
+        history.pushState(view, '', root + this._values.slice(1).join('/'))
         console.log(this._values);
-
+        
         await go(view)
-        document.body.setAttribute('fullview', '')
-        cleanup()
-    
-        const viewheader = elements.main.querySelector('header')
-        if(viewheader) viewheader.innerHTML = 
-            `<button icon navback>arrow_back</button>` + viewheader?.innerHTML;
-        (viewheader?.querySelector('[navback]') as HTMLElement).onclick = () => this.back()
     }
 };
 (window as any).stack = stack
+
+window.onpopstate = () => stack.back()
 
 go(stack.current)
 
@@ -68,6 +66,16 @@ async function go(view: string) {
             : e.removeAttribute('active')
     )
     elements.main.setAttribute('afterload', '')
+
+    if(!stack.first) {
+        document.body.setAttribute('fullview', '')
+        cleanup()
+    
+        const viewheader = elements.main.querySelector('header')
+        if(viewheader) viewheader.innerHTML = 
+            `<button icon navback>arrow_back</button>` + viewheader?.innerHTML;
+        (viewheader?.querySelector('[navback]') as HTMLElement).onclick = () => stack.back()
+    }
 }
 
 elements.links.forEach(link => link.addEventListener('click', () => {
@@ -89,9 +97,6 @@ async function request(url: string) {
 
 function fixFetch() {
     const oldFetch = window.fetch
-    const root = location.origin
-        + document.querySelector('head > link[rel="root"]')
-        ?.getAttribute('href') ?? '/'
     window.fetch = (input: RequestInfo, init?: RequestInit) => {
         if(input instanceof Request || !input.startsWith('/')) {
             return oldFetch(input, init)
