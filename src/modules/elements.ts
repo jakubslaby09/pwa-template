@@ -1,3 +1,4 @@
+import { view } from "./router"
 import { tap } from "./sound"
 
 const conditions = {
@@ -13,6 +14,9 @@ const conditions = {
     },
     dialog(e: Element) {
         return e.nodeName == 'DIALOG'
+    },
+    view(e: Element) {
+        return !!e.getAttribute('view')
     }
 }
 
@@ -31,6 +35,16 @@ const modifications: Modification[] = [
         if: conditions.dialog,
         then(e) {
             e.setAttribute('open', '')
+        }
+    },
+    {
+        if: conditions.view,
+        then(e: HTMLElement) {
+            e.onclick = (() => {
+                const name = e.getAttribute('view')
+                if(!name) return
+                view(name)
+            })
         }
     }
 ]

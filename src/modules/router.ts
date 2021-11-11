@@ -5,11 +5,14 @@ const elements = {
     main: document.querySelector('body > main') as HTMLElement,
     nav: document.querySelector('body > nav') as HTMLElement,
     links: document.querySelectorAll('body > nav > [page]'),
+    header: document.querySelector('body > header') as HTMLElement,
 }
 
 //self.caches?.delete('views') // delete on refresh
 
 export async function go(page: string) {
+    document.body.removeAttribute('fullview')
+
     elements.main.removeAttribute('afterload')
     elements.main.innerHTML = await request(`/views/${page}.html`)
     
@@ -19,6 +22,16 @@ export async function go(page: string) {
             : e.removeAttribute('active')
     )
     elements.main.setAttribute('afterload', '')
+}
+
+export async function view(view: string) {
+    await go(view)
+    const title = elements.main.querySelector('header')?.getAttribute('title')
+    document.body.setAttribute('fullview', '')
+    const viewheader = elements.main.querySelector('header')
+    if(viewheader) viewheader.innerHTML = 
+        `<button icon navback>arrow_back</button>`
+        + viewheader?.innerHTML
 }
 
 elements.links.forEach(link => link.addEventListener('click', () => {

@@ -58,6 +58,14 @@ nav {
         z-index: 1;
     }
   }
+
+  body[fullview] > & {
+    display: none;
+    
+    ~ #main {
+      bottom: 0;
+    }
+  }
   ~ #main {
     bottom: 5rem;
   }
