@@ -1,0 +1,40 @@
+<h1>Styles & Components</h1>
+<section id="ripple">
+    <h2>Ripple</h2>
+    <div ripple class="example-div">
+        <p>a div with ripple</p>
+    </div>
+</section>
+<section id="buttons" x-data="{ rotate: false }">
+    <h2>Buttons</h2>
+    <button>Default</button>
+    <button secondary>Secondary</button>
+    <button disabled>Disabled</button>
+    <button outlined>Outlined</button>
+    <button text>Text</button>
+    <button secondary icon="playlist_add">Secondary</button>
+    <button icon>favorite</button>
+    <button
+        icon
+        :rotate="rotate"
+        x-on:click="rotate = !rotate"
+        x-text="rotate ? 'sync_problem' : 'sync'"
+    />
+    <button icon disabled>visibility_off</button>
+</section>
+<section id="themes">
+    <h2>Dark & Light themes</h2>
+    <button secondary onclick="document.documentElement.setAttribute('light', '')">
+        Light
+    </button>
+    <button secondary onclick="document.documentElement.removeAttribute('light')">
+        Dark
+    </button>
+</section>
+
+<style>
+    .example-div {
+        padding: 2rem;
+        background-color: var(--surface);
+    }
+</style>

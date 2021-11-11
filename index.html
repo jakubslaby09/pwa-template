@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  x-data="{ 
+    light: false,
+    appmenu: false,
+  }"
+  :light="light"
+  style="display: none; /* CLS */"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="icons/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A lightweight template for a PWA with Material-looking styles.">
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <title>Vanilla PWA Template</title>
+    <script type="module" crossorigin src="/bundle/index.9563713b.js"></script>
+    <link rel="stylesheet" href="/bundle/index.854ae03d.css">
+  </head>
+  <body>
+    <header icon="search">
+      <input type="text" placeholder="Search nothing">
+      <button 
+        icon
+        x-on:click="light = !light; sounds.shutter()"
+        x-text="light ? 'light_mode' : 'dark_mode'"
+        :rotate="light"
+      />
+      <button icon x-on:click="appmenu = true">more_vert</button>
+    </header>
+    <nav>
+      <a page="home" icon="home">Home</a>
+      <a page="about" icon="notes">About project</a>
+    </nav>
+    <main id="main"></main>
+    <dialog appmenu :active="appmenu">
+      <div scrim x-on:click="appmenu = false"></div>
+      <title>Menu Title</title>
+      <div icon="notes">
+        <title>Some notes</title>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil, deleniti.</p>
+      </div>
+      <div icon="info">
+        <p>Lorem, ipsum dolor.</p>
+      </div>
+      <div>
+        <button icon="settings">Settings & Preferences</button>
+        <button icon="update" :disabled="!navigator.onLine" onclick="updateCaches(); sounds.refresh()">
+          Clear Offline Caches
+        </button>
+        <button icon="analytics">Project Licence</button>
+      </div>
+      <footer>
+        &copy; Jakub Slabý &bullet; 2021
+      </footer>
+    </dialog>
+    
+  </body>
+</html>
