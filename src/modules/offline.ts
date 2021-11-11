@@ -1,5 +1,5 @@
-const worker = location.port != '3000'
-    ? navigator.serviceWorker?.register('/sw.js')
+/* const worker =  */location.port != '3000'
+    ? navigator.serviceWorker?.register(new URL('/sw.js', import.meta.url).href)
     : null
 
 navigator.serviceWorker.onmessage = e => {
