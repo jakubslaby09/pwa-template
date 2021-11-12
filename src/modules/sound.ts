@@ -23,8 +23,8 @@ export function shutter() {
     sounds.shutter.play()
 }
 
-export function navigate(forward = true) {
-    navigator.vibrate(10)
+export function navigate(forward = true, stack = false) {
+    navigator.vibrate(stack ? 20 : 15)
     if(forward) sounds.navForward.play()
     else sounds.navBackward.play()
 }

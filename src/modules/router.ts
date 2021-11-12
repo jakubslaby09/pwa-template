@@ -48,13 +48,13 @@ export const stack = {
     },
     onback() {
         if(this.bottom) return
-        sounds.navigate(false)
+        sounds.navigate(false, true)
         elements.main.remove()
         this._values.pop()
         this.apply()
     },
     async push(view: string) {
-        sounds.navigate()
+        sounds.navigate(true, true)
         this._values.push(view)
         history.pushState(view, '', root + this._values.slice(1).join('/'))
         console.log(this._values);
