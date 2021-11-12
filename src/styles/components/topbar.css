@@ -39,38 +39,9 @@ header, body > header {
         }
     }
 
-    /* @at-root body[fullview] > header {
-        margin: 0;
-        padding: 1.2rem 0 1.2rem 1rem;
-        border-radius: 0;
-        
-        &::before {
-            content: attr(title);
-            position: absolute;
-            margin: 1rem 0 1rem 3rem;
-            color: currentColor;
-            font-size: 1.2rem;
-            font-family: inherit;
-            opacity: 1;
-        }
-
-        &::after {
-            display: none;
-        }
-
-        button[icon][navback] {
-            display: unset;
-            margin: 0.5rem -0.5rem;
-        }
-
-        button[icon]:not([navback]) {
-            display: none;
-        }
-        
-        input {
-            display: contents;
-        }
-    } */
+    @at-root body[fullview] > header {
+        opacity: 0;
+    }
 
     input {
         background: none;
