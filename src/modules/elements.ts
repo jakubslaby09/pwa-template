@@ -43,7 +43,7 @@ const modifications: Modification[] = [
             e.onclick = (() => {
                 const name = e.getAttribute('view')
                 if(!name) return
-                stack.open(name)
+                stack.push(name)
             })
         }
     }

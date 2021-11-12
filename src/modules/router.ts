@@ -8,7 +8,9 @@ import { navigate } from "./sound"
 //self.caches?.delete('views') // delete on refresh
 
 const elements = {
-    main: document.querySelector('body > main') as HTMLElement,
+    get mains() { return document.querySelectorAll('body > main') },
+    get main() { console.log(this.mains);
+     return this.mains[this.mains.length - 1] as HTMLElement },
     nav: document.querySelector('body > nav') as HTMLElement,
     links: document.querySelectorAll('body > nav > [page]'),
     header: document.querySelector('body > header') as HTMLElement,
@@ -28,36 +30,41 @@ export const stack = {
         },
         ...location.href.replace(root, '').split('/').filter(view => view != '')
     ] as string[] & [{ page: string, _page: string }],
-    get first() {
+    get bottom() {
         return this._values.length == 1 ? this._values[0] : null
     },
-    get current() {
-        return this.first?.page ?? this._values[this._values.length - 1]
+    apply() {
+        go(
+            this.bottom?.page
+            ?? this._values[this._values.length - 1]
+        )
     },
-    back() {
-        if(this.first) return
+    onback() {
+        if(this.bottom) return
+        elements.mains.forEach((e, i) => i != 0 ? e.remove() : null)
         this._values.pop()
-        history.back()
-        go(this.current)
+        this.apply()
     },
-    async open(view: string) {
+    async push(view: string) {
         this._values.push(view)
+        if(!stack.bottom) elements.main.insertAdjacentHTML(
+            'afterend', '<main></main>'
+        )
         history.pushState(view, '', root + this._values.slice(1).join('/'))
         console.log(this._values);
         
-        await go(view)
-    }
+        await this.apply()
+    },
 };
 (window as any).stack = stack
-
-window.onpopstate = () => stack.back()
-
-go(stack.current)
+window.onpopstate = () => stack.onback()
+stack.apply()
 
 async function go(view: string) {
     document.body.removeAttribute('fullview')
 
     elements.main.removeAttribute('afterload')
+    
     elements.main.innerHTML = await request(`/views/${view}.html`)
 
     document.querySelectorAll('[page]').forEach(
@@ -67,19 +74,20 @@ async function go(view: string) {
     )
     elements.main.setAttribute('afterload', '')
 
-    if(!stack.first) {
+    if(!stack.bottom) {
         document.body.setAttribute('fullview', '')
         cleanup()
     
         const viewheader = elements.main.querySelector('header')
         if(viewheader) viewheader.innerHTML = 
             `<button icon navback>arrow_back</button>` + viewheader?.innerHTML;
-        (viewheader?.querySelector('[navback]') as HTMLElement).onclick = () => stack.back()
+        const navback = viewheader?.querySelector('[navback]') as HTMLElement | undefined
+        if(navback) navback.onclick = () => history.back()
     }
 }
 
 elements.links.forEach(link => link.addEventListener('click', () => {
-    if(stack.first) stack.first.page = link.getAttribute('page')!
+    if(stack.bottom) stack.bottom.page = link.getAttribute('page')!
     navigate()
 }))
 
