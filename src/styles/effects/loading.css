@@ -1,4 +1,4 @@
-nav, body {
+nav {
     transition: background-position-y 0.2s cubic-bezier(0, 0, 0, 1);
     background: linear-gradient(
         var(--primary) 0.2rem,

@@ -103,10 +103,8 @@ async function request(url: string) {
     
     if(!res) {
         elements.nav.setAttribute('loading', '')
-        document.body.setAttribute('loading', '')
         res = await fetch(url)
         elements.nav.removeAttribute('loading')
-        document.body.removeAttribute('loading')
     }
     return await res.text()
 }
