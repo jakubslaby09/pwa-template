@@ -34,22 +34,26 @@ export const stack = {
         return this._values.length == 1 ? this._values[0] : null
     },
     apply() {
-        go(
-            this.bottom?.page
-            ?? this._values[this._values.length - 1]
-        )
+        this._values.forEach((view, i) => {
+            if(i == 0) return
+            if(elements.mains[i]) return
+            elements.main.insertAdjacentHTML(
+                'afterend', '<main></main>'
+            )
+            go(view)
+        })
+        if(this.bottom) go(this.bottom.page)
+        
+        cleanup('afterload')
     },
     onback() {
         if(this.bottom) return
-        elements.mains.forEach((e, i) => i != 0 ? e.remove() : null)
+        elements.main.remove()
         this._values.pop()
         this.apply()
     },
     async push(view: string) {
         this._values.push(view)
-        if(!stack.bottom) elements.main.insertAdjacentHTML(
-            'afterend', '<main></main>'
-        )
         history.pushState(view, '', root + this._values.slice(1).join('/'))
         console.log(this._values);
         
@@ -63,7 +67,7 @@ stack.apply()
 async function go(view: string) {
     document.body.removeAttribute('fullview')
 
-    cleanup('afterload')
+    elements.main.removeAttribute('afterload')
     
     elements.main.innerHTML = await request(`/views/${view}.html`)
 
@@ -77,7 +81,6 @@ async function go(view: string) {
     if(!stack.bottom) {
         document.body.setAttribute('fullview', '')
         cleanup('afterclick')
-        
     
         const viewheader = elements.main.querySelector('header')
         if(viewheader) viewheader.innerHTML = 
