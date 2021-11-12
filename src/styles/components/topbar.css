@@ -17,7 +17,6 @@ header, body > header {
     }
 
     main & {
-        position: fixed;
         margin: 0;
         height: 2.5rem;
         border-radius: unset;
@@ -38,10 +37,6 @@ header, body > header {
             position: absolute;
             margin: 0.8rem -0.5rem;
         }
-    }
-
-    @at-root body[fullview] > header {
-        display: none;
     }
 
     /* @at-root body[fullview] > header {

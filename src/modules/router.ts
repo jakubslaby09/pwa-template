@@ -63,7 +63,7 @@ stack.apply()
 async function go(view: string) {
     document.body.removeAttribute('fullview')
 
-    elements.main.removeAttribute('afterload')
+    cleanup('afterload')
     
     elements.main.innerHTML = await request(`/views/${view}.html`)
 
@@ -76,7 +76,8 @@ async function go(view: string) {
 
     if(!stack.bottom) {
         document.body.setAttribute('fullview', '')
-        cleanup()
+        cleanup('afterclick')
+        
     
         const viewheader = elements.main.querySelector('header')
         if(viewheader) viewheader.innerHTML = 
