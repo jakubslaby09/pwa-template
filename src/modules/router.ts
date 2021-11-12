@@ -40,7 +40,7 @@ export const stack = {
             elements.main.insertAdjacentHTML(
                 'afterend', '<main></main>'
             )
-            go(view)
+            go(view, i)
         })
         if(this.bottom) go(this.bottom.page)
         
@@ -64,7 +64,7 @@ export const stack = {
 window.onpopstate = () => stack.onback()
 stack.apply()
 
-async function go(view: string) {
+async function go(view: string, layer = 0) {
     document.body.removeAttribute('fullview')
 
     elements.main.removeAttribute('afterload')
@@ -82,11 +82,13 @@ async function go(view: string) {
         document.body.setAttribute('fullview', '')
         cleanup('afterclick')
     
-        const viewheader = elements.main.querySelector('header')
-        if(viewheader) viewheader.innerHTML = 
+        if(layer != 0) {
+            const viewheader = elements.mains[layer].querySelector('header')
+            if(viewheader) viewheader.innerHTML = 
             `<button icon navback>arrow_back</button>` + viewheader?.innerHTML;
-        const navback = viewheader?.querySelector('[navback]') as HTMLElement | undefined
-        if(navback) navback.onclick = () => history.back()
+            const navback = viewheader?.querySelector('[navback]') as HTMLElement | undefined
+            if(navback) navback.onclick = () => history.back()
+        }
     }
 }
 
@@ -101,8 +103,10 @@ async function request(url: string) {
     
     if(!res) {
         elements.nav.setAttribute('loading', '')
+        document.body.setAttribute('loading', '')
         res = await fetch(url)
         elements.nav.removeAttribute('loading')
+        document.body.removeAttribute('loading')
     }
     return await res.text()
 }
