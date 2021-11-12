@@ -3,7 +3,7 @@ const root = location.origin
 fixFetch()
 
 import { cleanup } from "./elements"
-import { navigate } from "./sound"
+import * as sounds from "./sound"
 
 //self.caches?.delete('views') // delete on refresh
 
@@ -48,11 +48,13 @@ export const stack = {
     },
     onback() {
         if(this.bottom) return
+        sounds.navigate(false)
         elements.main.remove()
         this._values.pop()
         this.apply()
     },
     async push(view: string) {
+        sounds.navigate()
         this._values.push(view)
         history.pushState(view, '', root + this._values.slice(1).join('/'))
         console.log(this._values);
@@ -94,7 +96,7 @@ async function go(view: string, layer = 0) {
 
 elements.links.forEach(link => link.addEventListener('click', () => {
     if(stack.bottom) stack.bottom.page = link.getAttribute('page')!
-    navigate()
+    sounds.navigate()
 }))
 
 async function request(url: string) {
