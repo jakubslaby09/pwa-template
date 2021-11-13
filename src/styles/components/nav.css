@@ -2,7 +2,9 @@
     cursor: pointer;
 }
 nav {
-  transition: transform 0.5s cubic-bezier(0, 0.7, 0, 1);
+  transition: 
+    transform 0.5s cubic-bezier(0, 0.7, 0, 1),
+    background-position-y 0.2s cubic-bezier(0, 0, 0, 1);
   position: fixed;
   display: flex;
   bottom: 0;
