@@ -70,6 +70,7 @@ async function go(view: string, layer = 0) {
     document.body.removeAttribute('fullview')
 
     elements.main.removeAttribute('afterload')
+    setTimeout(() => elements.main.setAttribute('afterload', ''), 0)
     
     elements.main.innerHTML = await request(`/views/${view}.html`)
 
@@ -78,7 +79,6 @@ async function go(view: string, layer = 0) {
             ? e.setAttribute('active', '')
             : e.removeAttribute('active')
     )
-    elements.main.setAttribute('afterload', '')
 
     if(!stack.bottom) {
         document.body.setAttribute('fullview', '')

@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined&display=swap');
 
+@import "styles/components/main.css";
 @import "styles/effects/ripple.css";
 @import "styles/effects/shadow.css";
 @import "styles/effects/loading.css";
@@ -33,64 +34,6 @@ html[light] {
   --on-background: #000;
   --surface: #f0f4ff;
   --on-surface: #444;
-}
-body > main {
-  position: absolute;
-  border: none;
-  inset: 0;
-  padding: 1rem;
-  overflow-x: hidden;
-  opacity: 0;
-
-  &[afterload] {
-    animation: main-load 0.5s cubic-bezier(0, 0.7, 0, 1) forwards;
-  }
-
-  &:not(:first-of-type) {
-    background-color: var(--background);
-    top: 0;
-    padding-top: 4rem;
-
-    &[afterload]:last-of-type {
-      animation: main-open 0.5s cubic-bezier(0, 1, 0, 1) forwards;
-    }
-  }
-  
-  &:last-of-type {
-    opacity: unset;
-
-    &:not(:first-of-type) {
-      animation: main-back 0.5s cubic-bezier(0, 1, 0, 1) forwards;
-
-    }
-  }
-}
-
-@keyframes main-load {
-  from {
-    opacity: 0;
-    transform: translateY(2rem);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-@keyframes main-open {
-  from {
-    transform: scaleY(0.9) scaleX(0.8);
-  }
-  to {
-    transform: none;
-  }
-}
-@keyframes main-back {
-  from {
-    transform: scale(1.1);
-  }
-  to {
-    transform: none;
-  }
 }
 
 ::-webkit-scrollbar {
