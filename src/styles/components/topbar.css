@@ -44,6 +44,7 @@ header, body > header {
     }
 
     input {
+        width: 0;
         background: none;
         border: none;
         outline: none;
