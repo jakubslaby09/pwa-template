@@ -11,7 +11,7 @@ nav {
   left: 0;
   right: 0;
   height: 4rem;
-  padding: 0.5rem 0;
+  padding: 0.5rem calc(50% - 15rem);
   justify-content: space-around;
   background-color: var(--surface);
   border-top-left-radius: var(--border-radius);
