@@ -1,5 +1,5 @@
 const root = location.origin
-        + document.querySelector('head > link[rel="root"]')?.getAttribute('href') ?? '/'
+        + (document.querySelector('head > link[rel="root"]')?.getAttribute('href') ?? '/')
 fixFetch()
 
 import { cleanup } from "./elements"
@@ -9,8 +9,7 @@ import * as sounds from "./sound"
 
 const elements = {
     get mains() { return document.querySelectorAll('body > main') },
-    get main() { console.log(this.mains);
-     return this.mains[this.mains.length - 1] as HTMLElement },
+    get main() { return this.mains[this.mains.length - 1] as HTMLElement },
     nav: document.querySelector('body > nav') as HTMLElement,
     links: document.querySelectorAll('body > nav > [page]'),
     header: document.querySelector('body > header') as HTMLElement,
@@ -117,7 +116,8 @@ function fixFetch() {
         if(input instanceof Request || !input.startsWith('/')) {
             return oldFetch(input, init)
         }
-        const path = new URL('.' + input, root).href
+        
+        const path = new URL(input, root).href
         return oldFetch(path, init)
     }
 }
