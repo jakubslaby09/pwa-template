@@ -1,0 +1,50 @@
+<header title="Upravit rozhodnutí"></header>
+<div x-data="{
+    name: $store.openedIntent ?? null,
+    intent: intents[$store.openedIntent]
+}" style="display: flex; flex-direction: column;">
+    <section style="
+        height: 30vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    ">
+        <h1 x-text="name"></h1>
+        <button icon x-on:click="intent.history.push(new Date())">more_time</button>
+    </section>
+    <section>
+        <h2>Historie</h2>
+        <ul>
+            <template x-for="date in intent.history">
+                <li x-text="date"></li>
+            </template>
+        </ul>
+    </section>
+    <section>
+        <p x-text="JSON.stringify(intent)"></p>
+        <input type="text" x-model="name" x-effect="intent = intents[name] ?? null">
+        <textarea id="steps"></textarea>
+    </section>
+</div>
+
+<style>
+    #steps {
+        display: block;
+        width: calc(100% - 3rem);
+        height: 20ch;
+
+        margin: 1rem 0.5rem;
+        border: none;
+        outline: none;
+
+        background-color: var(--surface);
+        background-image: linear-gradient(var(--background) 0.25rem, var(--surface) 0.25rem);
+        background-size: 100% 2ch;
+        color: var(--on-surface);
+        border-radius: var(--border-radius);
+
+        font-size: 1.5em;
+        line-height: 2ch;
+    }
+</style>
