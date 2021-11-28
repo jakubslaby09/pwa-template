@@ -117,7 +117,7 @@ function fixFetch() {
             return oldFetch(input, init)
         }
         
-        const path = new URL(input, root).href
+        const path = new URL(input.slice(1), root).href
         return oldFetch(path, init)
     }
 }
