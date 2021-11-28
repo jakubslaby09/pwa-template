@@ -1,5 +1,5 @@
 self.addEventListener('install', async e => {
-    //e.skipWaiting()
+    e.skipWaiting()
 })
 
 self.addEventListener('fetch', event => {

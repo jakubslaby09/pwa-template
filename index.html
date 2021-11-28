@@ -17,19 +17,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="A lightweight template for a PWA with Material-looking styles.">
     <script src="//unpkg.com/alpinejs" defer></script>
-    <title>lifectl_</title>
-    <script type="module" crossorigin src="/pwa-template/bundle/index.cb17da5c.js"></script>
-    <link rel="stylesheet" href="/pwa-template/bundle/index.89c1f359.css">
+    <title>Vanilla PWA Template</title>
+    <script type="module" crossorigin src="/pwa-template/bundle/index.0c45b31c.js"></script>
+    <link rel="stylesheet" href="/pwa-template/bundle/index.397c9aff.css">
   </head>
   <body>
-    <header style="
-    background: linear-gradient(to right,#200D3A, #CE5E82, #ECC6A2);
-    color: #ECC6A2;
-    font-family: 'Fira Code';
-    --on-surface: #200D3A;
-    font-size: 1.2em;
-    ">
-      <input type="text" value="lifectl_" readonly style="letter-spacing: 0.2ch">
+    <header icon="search">
+      <input type="text" placeholder="Search nothing">
       <button 
         icon
         x-on:click="light = !light; sounds.shutter()"
@@ -39,16 +33,15 @@
       <button icon x-on:click="appmenu = true">more_vert</button>
     </header>
     <nav>
-      <a page="stats" icon="pie_chart">Statistika</a>
-      <a page="home" icon="perm_contact_calendar">Přehled</a>
-      <a page="elements" icon="people">Styl</a>
+      <a page="home" icon="home">Home</a>
+      <a page="about" icon="notes">About project</a>
     </nav>
     <main id="main"></main>
     <dialog appmenu :active="appmenu">
       <div scrim x-on:click="appmenu = false"></div>
-      <title>Hlavní nabídka</title>
+      <title>Menu Title</title>
       <div icon="notes">
-        <title>Výplňová poznámka</title>
+        <title>Some notes</title>
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil, deleniti.</p>
       </div>
       <div icon="info">
@@ -57,9 +50,9 @@
       <div>
         <button icon="settings" view="settings" x-on:click="appmenu = false">Settings & Preferences</button>
         <button icon="update" :disabled="!navigator.onLine" onclick="updateCaches(); sounds.refresh()">
-          Vyčistit Mezipaměť pro Offline 
+          Clear Offline Caches
         </button>
-        <button icon="analytics">Licence projektu</button>
+        <button icon="analytics">Project Licence</button>
       </div>
       <footer>
         &copy; Jakub Slabý &bullet; 2021
