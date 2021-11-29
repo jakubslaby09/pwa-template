@@ -63,6 +63,7 @@ button {
         color: currentColor;
         padding: 0.5rem;
         margin: 0.6rem;
+        font-weight: unset;
         box-shadow: unset;
         letter-spacing: unset;
         outline: none;
