@@ -1,26 +1,22 @@
 <h1>Styles & Components</h1>
+<h2>Ripple</h2>
 <section id="ripple">
-    <h2>Ripple</h2>
     <div ripple class="example-div">
         <p>a div with ripple</p>
     </div>
 </section>
+<h2>Buttons</h2>
 <section id="buttons" x-data="{ rotate: false }">
-    <h2>Buttons</h2>
-    <button>Default</button>
-    <button secondary>Secondary</button>
-    <button disabled>Disabled</button>
-    <button outlined>Outlined</button>
-    <button text>Text</button>
-    <button secondary icon="playlist_add">Secondary</button>
-    <button icon>favorite</button>
-    <button
-        icon
-        :rotate="rotate"
-        x-on:click="rotate = !rotate"
-        x-text="rotate ? 'sync_problem' : 'sync'"
-    />
-    <button icon disabled>visibility_off</button>
+
+    <button fab large>edit</button>
+    <button fab>edit</button>
+    <button fab icon="edit">Enabled</button>
+    
+    <button filled>Enabled</button>
+    <button filled secondary>Enabled</button>
+    <button outlined>Enabled</button>
+
+    <button icon>edit</button>
 </section>
 <section id="themes">
     <h2>Dark & Light themes</h2>
@@ -36,5 +32,13 @@
     .example-div {
         padding: 2rem;
         background-color: var(--surface);
+    }
+    #buttons {
+        display: grid;
+        grid-template-columns: repeat(3, min-content);
+        gap: 1rem;
+        justify-items: center;
+        align-items: center;
+        justify-content: space-between;
     }
 </style>

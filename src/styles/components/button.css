@@ -1,56 +1,59 @@
 button {
-    background-color: var(--primary);
-    color: var(--on-primary);
+    height: 2.5rem;
     border: none;
-    border-radius: 0.25rem;
-    padding: 0.7rem 1rem;
+    border-radius: 1.25rem;
+    padding: 0 23px;
+    color: var(--primary);
+    background-color: transparent;
+    font-size: 0.88rem;
     font-family: inherit;
     font-weight: 600;
-    font-size: 0.875rem;
-    letter-spacing: .07em;
-    text-transform: uppercase;
+    /* font-size: 0.875rem;
+    letter-spacing: .07em; */
+    /* text-transform: uppercase; */
     vertical-align: middle;
+    white-space: nowrap;
 
-    &[secondary] {
-        background-color: var(--secondary);
-        color: var(--on-secondary);
-    }
-
-    &[outlined], &[outline], &[text] {
-        --color: var(--primary);
-        background-color: transparent;
-        outline: solid var(--color) 0.05rem;
-        outline-offset: -0.05rem;
-        color: var(--color);
-        box-shadow: none;
-
-        &::after {
-            color: var(--color);
-            opacity: 0.5;
-        }
-
-        &[afterclick]::after {
-            animation: ripple 1s cubic-bezier(0, 0.8, 1, 1) forwards;
-        }
-
+    &[filled] {
+        color: var(--on-primary);
+        background-color: var(--primary);
+        
         &[secondary] {
-            --color: var(--secondary);
+            color: var(--on-primary-container);
+            background-color: var(--primary-container);
         }
     }
 
-    &[text] {
-        outline: none;
+    &[outlined] {
+        outline: solid var(--on-surface) 1px;
+        outline-offset: -1px;
     }
 
-    &:disabled {
-        filter: saturate(0) brightness(0.5);
-        box-shadow: none;
-    }
+    &[fab] {
+        color: var(--on-primary-container);
+        background-color: var(--primary-container);
+        border-radius: 1em; /* 25% of height */
+        font-family: 'Material Icons';
+        font-size: 1rem;
+        height: 3rem;
+        
+        padding: 0 1em;
 
-    &[icon]:not([icon=""]) {
-        &::before {
-            content: attr(icon);
-            font-family: 'Material Icons';
+        &[icon] {
+            font-family: inherit;
+            font-size: 0.7rem;
+
+            &::before {
+                content: attr(icon);
+                font-family: 'Material Icons';
+                font-size: 1rem;
+                margin-right: 0.75ch;
+            }
+        }
+
+        &[large] {
+            font-size: 1.5rem;
+            height: 3em;
         }
     }
 
