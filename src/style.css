@@ -15,25 +15,43 @@ html {
   transition: 
     background-color 0.5s cubic-bezier(0, 0, 0, 1),
     color 0.5s cubic-bezier(0, 0, 0, 1);
+
+  --primary: hsl(212, 82%, 80%);
+  --on-primary: hsl(212, 82%, 20%);
+  --primary-container: hsl(212, 82%, 30%);
+  --on-primary-container: hsl(212, 82%, 90%);
+
+  --secondary: hsl(300, 2%, 80%);
+  --on-secondary: hsl(300, 2%, 20%);
+  --secondary-container: hsl(300, 2%, 30%);
+  --on-secondary-container: hsl(300, 2%, 90%);
+
   --background: #000;
   --on-background: #ddd;
   --surface: #222;
   --on-surface: #ddd;
   --border-radius: 0.5rem;
-  --primary: #1778e4;
-  --on-primary: #fff;
-  --secondary: #312f31;
-  --on-secondary: #fff;
 
   background-color: var(--background);
   color: var(--on-background);
   font-family: 'Open Sans';
 }
 html[light] {
-  --background: #f4f8ff;
-  --on-background: #000;
-  --surface: #f0f4ff;
-  --on-surface: #444;
+  --primary: hsl(212, 82%, 40%);
+  --on-primary: hsl(212, 82%, 100%);
+  --primary-container: hsl(212, 82%, 90%);
+  --on-primary-container: hsl(212, 82%, 10%);
+  
+  --secondary: hsl(300, 2%, 40%);
+  --on-secondary: hsl(300, 2%, 100%);
+  --secondary-container: hsl(300, 2%, 90%);
+  --on-secondary-container: hsl(300, 2%, 10%);
+  
+  --background: hsl(0, 0%, 100%);
+  --on-background: hsl(0, 0%, 10%);
+  
+  --surface: hsl(212, 100%, 98%);
+  --on-surface: hsl(0, 0%, 10%);
 }
 
 ::-webkit-scrollbar {
