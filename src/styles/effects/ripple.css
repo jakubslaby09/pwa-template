@@ -8,11 +8,11 @@ button, input[type="submit"] {
     &::after {
       content: '';
       position: absolute;
-      inset: 0.05rem;
+      inset: 0.15rem;
       background: radial-gradient(
         circle,
         currentColor 10%,
-        #0000 calc(10% + 0.2px /* smooth out pixels */)
+        #0000 calc(10% + 0.1px /* smooth out pixels */)
       );
       transform: scale(0);
       pointer-events: none;

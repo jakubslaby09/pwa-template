@@ -75,7 +75,7 @@ button {
         &::before {
             content: '';
             position: absolute;
-            inset: -1.8rem -0.5rem;
+            inset: -1rem;
             overflow: visible;
             z-index: -1;
             pointer-events: none;
