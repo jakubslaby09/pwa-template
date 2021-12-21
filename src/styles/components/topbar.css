@@ -40,10 +40,6 @@ header, body > header {
         }
     }
 
-    @at-root body[fullview] > header {
-        opacity: 0;
-    }
-
     input {
         width: 0;
         background: none;
@@ -83,4 +79,8 @@ header, body > header {
     ~ #main {
         top: 4rem;
     }
+}
+
+body[fullview] > header {
+    opacity: 0;
 }
