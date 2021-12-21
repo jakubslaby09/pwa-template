@@ -17,6 +17,12 @@
     <button outlined>Enabled</button>
 
     <button icon>edit</button>
+    <button
+        icon
+        :rotate="rotate"
+        x-text="rotate ? 'sync_problem' : 'sync'"
+        x-on:click="rotate = !rotate"
+    ></button>
 </section>
 <section id="themes">
     <h2>Dark & Light themes</h2>
