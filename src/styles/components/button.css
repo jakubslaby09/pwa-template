@@ -39,6 +39,10 @@ button {
         font-size: 1rem;
         aspect-ratio: 1 / 1;
 
+        &:not([icon]) {
+            font-weight: unset;
+        }
+
         &[icon] {
             font-family: inherit;
             font-size: 0.7rem;
@@ -48,6 +52,7 @@ button {
                 content: attr(icon);
                 font-family: 'Material Icons';
                 font-size: 1rem;
+                font-weight: initial;
                 margin-right: 0.75ch;
             }
         }
