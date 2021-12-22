@@ -42,6 +42,7 @@ button {
         &[icon] {
             font-family: inherit;
             font-size: 0.7rem;
+            aspect-ratio: unset;
 
             &::before {
                 content: attr(icon);
