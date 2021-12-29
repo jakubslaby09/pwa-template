@@ -1,11 +1,14 @@
 <h1>Styles & Components</h1>
 <h2>Ripple</h2>
 <section id="ripple">
+
     <card outlined ripple>
         <button icon disabled>blur_circular</button>
         a card with ripple
     </card>
+    
 </section>
+
 <h2>Buttons</h2>
 <section id="buttons" x-data="{ rotate: false }">
 
@@ -24,9 +27,12 @@
         x-text="rotate ? 'sync_problem' : 'sync'"
         x-on:click="rotate = !rotate"
     ></button>
+    
 </section>
+
 <h2>Cards</h2>
 <section id="cards">
+
     <card outlined>
         <img src="https://lh3.googleusercontent.com/-Hwl8y2-8eHdCttlaY7KUV3VNtH_FeDi9T21ALNCJqZs-p2HYqxyqyxdWQZwOQJ2UAK3NVRAf8rh7YjHykGFDhfuBB6t-lPMEY8pmzEvIcVXaL3FWiSe=w1200-rj">
         <h1>Headline</h1>
@@ -69,8 +75,11 @@
         <button>Action</button>
         <button filled>Action</button>
     </card>
+    
 </section>
+
 <section id="themes">
+
     <h2>Dark & Light themes</h2>
     <button secondary onclick="document.documentElement.setAttribute('light', '')">
         Light
@@ -78,7 +87,9 @@
     <button secondary onclick="document.documentElement.removeAttribute('light')">
         Dark
     </button>
+    
 </section>
+
 
 <style>
     .example-div {
