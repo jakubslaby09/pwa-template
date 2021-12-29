@@ -28,8 +28,12 @@ html {
 
   --background: #000;
   --on-background: #ddd;
+
   --surface: #222;
   --on-surface: #ddd;
+  --surface-variant: hsl(212, 10%, 20%);
+  --on-surface-variant: hsl(212, 5%, 80%);
+
   --border-radius: 0.5rem;
 
   background-color: var(--background);
@@ -52,6 +56,8 @@ html[light] {
   
   --surface: hsl(212, 100%, 98%);
   --on-surface: hsl(0, 0%, 10%);
+  --surface-variant: hsl(212, 24%, 93%);
+  --on-surface-variant: hsl(0, 0%, 30%);
 }
 
 ::-webkit-scrollbar {
