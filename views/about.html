@@ -1,10 +1,14 @@
 <h1>Styles & Components</h1>
 <h2>Ripple</h2>
 <section id="ripple">
-    <div ripple class="example-div">
-        <p>a div with ripple</p>
-    </div>
+
+    <card outlined ripple>
+        <button icon disabled>blur_circular</button>
+        a card with ripple
+    </card>
+    
 </section>
+
 <h2>Buttons</h2>
 <section id="buttons" x-data="{ rotate: false }">
 
@@ -23,8 +27,59 @@
         x-text="rotate ? 'sync_problem' : 'sync'"
         x-on:click="rotate = !rotate"
     ></button>
+    
 </section>
+
+<h2>Cards</h2>
+<section id="cards">
+
+    <card outlined>
+        <img src="https://lh3.googleusercontent.com/-Hwl8y2-8eHdCttlaY7KUV3VNtH_FeDi9T21ALNCJqZs-p2HYqxyqyxdWQZwOQJ2UAK3NVRAf8rh7YjHykGFDhfuBB6t-lPMEY8pmzEvIcVXaL3FWiSe=w1200-rj">
+        <h1>Headline</h1>
+        <h4>Subhead</h4>
+        <p>This card has an image placed as the first element in it.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis modi omnis quibusdam quis quas. Repellat.</p>
+        <button>Action</button>
+        <button filled>Action</button>
+    </card>
+    <card outlined>
+        <h1>Headline</h1>
+        <h4>Subhead</h4>
+        <p>This card has an image placed just after these paragraphs.</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet repudiandae sequi numquam placeat tenetur adipisci.</p>
+        <img src="https://lh3.googleusercontent.com/-Hwl8y2-8eHdCttlaY7KUV3VNtH_FeDi9T21ALNCJqZs-p2HYqxyqyxdWQZwOQJ2UAK3NVRAf8rh7YjHykGFDhfuBB6t-lPMEY8pmzEvIcVXaL3FWiSe=w1200-rj">
+        <button>Action</button>
+        <button filled>Action</button>
+    </card>
+
+    <br>
+
+    <card>
+        <h1>Elevated</h1>
+        <h4>Subhead</h4>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus labore quos tempore laudantium sunt incidunt recusandae iste deleniti modi voluptatum dolores voluptatem eius, assumenda facere, doloribus molestiae, eos voluptate id?</p>
+        <button>Action</button>
+        <button filled>Action</button>
+    </card>
+    <card filled>
+        <h1>Filled</h1>
+        <h4>Subhead</h4>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus labore quos tempore laudantium sunt incidunt recusandae iste deleniti modi voluptatum dolores voluptatem eius, assumenda facere, doloribus molestiae, eos voluptate id?</p>
+        <button>Action</button>
+        <button filled>Action</button>
+    </card>
+    <card outlined>
+        <h1>Outlined</h1>
+        <h4>Subhead</h4>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus labore quos tempore laudantium sunt incidunt recusandae iste deleniti modi voluptatum dolores voluptatem eius, assumenda facere, doloribus molestiae, eos voluptate id?</p>
+        <button>Action</button>
+        <button filled>Action</button>
+    </card>
+    
+</section>
+
 <section id="themes">
+
     <h2>Dark & Light themes</h2>
     <button secondary onclick="document.documentElement.setAttribute('light', '')">
         Light
@@ -32,7 +87,9 @@
     <button secondary onclick="document.documentElement.removeAttribute('light')">
         Dark
     </button>
+    
 </section>
+
 
 <style>
     .example-div {
