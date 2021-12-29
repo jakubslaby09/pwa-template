@@ -1,0 +1,38 @@
+card {
+    display: block;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin: 0.5rem;
+    background-color: var(--surface);
+
+    &[filled] {
+        color: var(--on-surface-variant);
+        background-color: var(--surface-variant);
+        box-shadow: none;
+    }
+
+    &[outlined] {
+        outline: solid 1.5px var(--on-surface);
+        box-shadow: none;
+    }
+
+    > * {
+        display: block;
+    }
+
+    > button {
+        display: inline;
+    }
+
+    > img, > [media] {
+        width: 100%;
+        border-radius: var(--border-radius);
+        margin: 2rem 0 1rem;
+        
+        &:first-child {
+            width: calc(100% + 2rem);
+            margin: -1rem -1rem 0 -1rem;
+        }
+    }
+
+}

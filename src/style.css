@@ -9,6 +9,7 @@
 @import "styles/components/topbar.css";
 @import "styles/components/button.css";
 @import "styles/components/dialog.css";
+@import "styles/components/card.css";
 
 html {
   display: initial !important; /* CLS */
