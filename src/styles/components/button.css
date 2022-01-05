@@ -61,6 +61,16 @@ button {
             font-size: 1.5rem;
             height: 3em;
         }
+
+        body > main > & {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            animation: button-fab-fixed 1s cubic-bezier(0, 1, 0, 1);
+        }
+        body > main:first-of-type > & {
+            bottom: 6rem;
+        }
     }
 
     &[icon=""] {
@@ -98,5 +108,15 @@ button {
         &[rotate] {
             transform: rotate(360deg);
         }
+    }
+}
+
+@keyframes button-fab-fixed {
+    from, 50% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        
     }
 }
