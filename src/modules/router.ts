@@ -1,4 +1,3 @@
-import { cleanup } from "./elements"
 import * as sounds from "./sound"
 
 const root = location.origin

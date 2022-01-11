@@ -72,12 +72,6 @@ function ripple(element: Element, delay: number = 0) {
     tap()
 }
 
-export function cleanup(attribute: string) {
-    document.querySelectorAll(`[${attribute}]`).forEach(
-        async e => e.removeAttribute(attribute)
-    )
-}
-
 interface Modification {
     if: (e: Element) => boolean
     then: (e: Element) => void
