@@ -1,4 +1,4 @@
-import { stack } from "./router"
+import stack from "./router"
 import { tap } from "./sound"
 
 const conditions = {
@@ -17,7 +17,10 @@ const conditions = {
     },
     view(e: Element) {
         return !!e.getAttribute('view')
-    }
+    },
+    page(e: Element) {
+        return !!e.getAttribute('page')
+    },
 }
 
 const modifications: Modification[] = [
@@ -46,7 +49,17 @@ const modifications: Modification[] = [
                 stack.push(name)
             })
         }
-    }
+    },
+    {
+        if: conditions.page,
+        then(e: HTMLElement) {
+            e.onclick = (() => {
+                const name = e.getAttribute('page')
+                if(!name) return
+                stack.bottom = name
+            })
+        }
+    },
 ]
 
 

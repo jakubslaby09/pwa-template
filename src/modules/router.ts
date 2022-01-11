@@ -1,9 +1,9 @@
+import { cleanup } from "./elements"
+import * as sounds from "./sound"
+
 const root = location.origin
         + (document.querySelector('head > link[rel="root"]')?.getAttribute('href') ?? '/')
 fixFetch()
-
-import { cleanup } from "./elements"
-import * as sounds from "./sound"
 
 //self.caches?.delete('views') // delete on refresh
 
@@ -15,57 +15,101 @@ const elements = {
     header: document.querySelector('body > header') as HTMLElement,
 }
 
-export const stack = {
-    _values: [
-        {
-            _page: 'home',
-            get page() {
-                return this._page
-            },
-            set page(page) {
-                this._page = page
-                go(page)
-            },
-        },
-        ...location.href.replace(root, '').split('/').filter(view => view != '')
-    ] as string[] & [{ page: string, _page: string }],
-    get bottom() {
-        return this._values.length == 1 ? this._values[0] : null
+const animations = {
+    async afterload() {
+        elements.main.removeAttribute('afterload')
+        setTimeout(() => elements.main.setAttribute('afterload', ''), 0)
     },
-    apply() {
-        this._values.forEach((view, i) => {
-            if(i == 0) return
-            if(elements.mains[i]) return
-            elements.main.insertAdjacentHTML(
-                'afterend', '<main></main>'
-            )
-            go(view, i)
-        })
-        if(this.bottom) go(this.bottom.page)
-        
-        cleanup('afterload')
+    async fullview(remove = false) {
+        if(remove) document.body.removeAttribute('fullview')
+        else document.body.setAttribute('fullview', '')
+    }
+}
+
+const stack = {
+    _bottom: 'home',
+
+    get values() {
+        return [
+            this._bottom,
+            ...location.pathname.split('/').filter(n => n != '')
+        ]
     },
-    onback() {
-        if(this.bottom) return
-        sounds.navigate(false, true)
-        elements.main.remove()
-        this._values.pop()
+
+    push(view: string) {
+        history.pushState(null, '', `${location.pathname.slice(1)}/${view}`)
+        sounds.navigate(true, true)
         this.apply()
     },
-    async push(view: string) {
-        sounds.navigate(true, true)
-        this._values.push(view)
-        history.pushState(view, '', root + this._values.slice(1).join('/'))
-        console.log(this._values);
-        
-        await this.apply()
+    
+    get bottom() {
+        return this.values.length == 1 ? this._bottom : null
     },
-};
-(window as any).stack = stack
-window.onpopstate = () => stack.onback()
-stack.apply()
 
-async function go(view: string, layer = 0) {
+    set bottom(page: string | null) {
+        if(page && this.values.length == 1) this._bottom = page
+        sounds.navigate(true)
+        this.apply()
+    },
+
+    get top() {
+        return this.values[this.values.length - 1]
+    },
+
+    get path() {
+        return this.values.join('/')
+    },
+
+    async apply() {
+        console.time('applystack')
+        console.log(`%c${this.path}`, 'color: gold')
+        
+        this.values.forEach(async (view, layer) => {
+            if(!elements.mains[layer]) 
+                elements.main.insertAdjacentHTML('afterend', '<main/>')
+        })
+
+        if(elements.mains.length > this.values.length) 
+            elements.main.remove()
+            
+        else animations.afterload()
+        animations.fullview(!!this.bottom)
+        activateLinks(this.top)
+        insert(this.top, !!this.bottom)
+        .then(() => console.timeEnd('applystack'))
+
+        
+    }
+}
+export default stack
+;(window as any).stack = stack
+
+stack.apply()
+window.onpopstate = () => stack.apply()
+
+async function activateLinks(view: string) {
+    document.querySelectorAll('[page]').forEach(
+        e => e.getAttribute('page') == view
+            ? e.setAttribute('active', '')
+            : e.removeAttribute('active')
+    )
+}
+
+async function insert(view: string, bottom = true) {
+    elements.main.innerHTML = await request(`/views/${view}.html`)
+    
+    if(!bottom) {
+        const header = elements.main.querySelector('header')
+        if(!header) return
+
+        header.prepend(document.createElement('button'))
+        header.children[0]!.outerHTML = '<button icon navback>arrow_back</button>'
+        header.children[0]!.addEventListener('click', () => history.back())
+        
+    }
+}
+
+/* async function go(view: string, layer = 0) {
     document.body.removeAttribute('fullview')
 
     elements.main.removeAttribute('afterload')
@@ -94,9 +138,9 @@ async function go(view: string, layer = 0) {
 }
 
 elements.links.forEach(link => link.addEventListener('click', () => {
-    if(stack.bottom) stack.bottom.page = link.getAttribute('page')!
+    if(stack.bottom) stack.bottom = link.getAttribute('page')!
     sounds.navigate()
-}))
+})) */
 
 async function request(url: string) {
     const cache = await self.caches?.open('views') as Cache | undefined // compatibility
