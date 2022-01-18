@@ -12,7 +12,7 @@ card {
     }
 
     &[outlined] {
-        outline: solid 1.5px var(--on-surface);
+        outline: var(--outline);
         box-shadow: none;
     }
 
