@@ -1,16 +1,28 @@
+input[type="text"][outlined],
+input[type="password"][outlined],
+input[type="number"],
 textfield {
     display: block;
     height: 1.4rem;
     margin: 1rem 0.5rem 1rem 0;
-    padding: 1rem;
     border: none;
     border-radius: var(--border-radius);
     outline: var(--outline);
-    color: transparent;
+    padding: 1rem;
+    color: var(--on-surface);
     caret-color: var(--primary);
     background: none;
     font-size: inherit;
     font-family: inherit;
+
+    &:focus {
+        outline: solid var(--primary) 0.125rem;
+    }
+    
+}
+
+textfield {
+    color: transparent;
     white-space: nowrap;
     overflow-x: hidden;
     cursor: text;
@@ -28,14 +40,6 @@ textfield {
             opacity: unset;
         }
     }
-
-    &:focus {
-        outline: solid var(--primary) 0.125rem;
-        
-        &::after {
-            color: var(--primary);
-        }
-    }
     
     &::after {
         content: attr(title);
@@ -47,6 +51,10 @@ textfield {
         color: var(--on-surface);
         background-color: var(--surface);
         opacity: 0.85;
+    }
+
+    &:focus::after {
+        color: var(--primary);
     }
 
     &[icon] {
@@ -75,9 +83,3 @@ textfield {
         display: none;
     }
 }
-
-/* input {
-    &[type="text"] {
-        
-    }
-} */
