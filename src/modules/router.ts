@@ -63,7 +63,7 @@ const stack = {
         console.time('applystack')
         console.log(`%c${this.path}`, 'color: gold')
         
-        this.values.forEach(async (view, layer) => {
+        this.values.forEach(async (_, layer) => {
             if(!elements.mains[layer]) 
                 elements.main.insertAdjacentHTML('afterend', '<main/>')
         })
