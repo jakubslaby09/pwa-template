@@ -25,6 +25,7 @@ textfield {
             padding: 0 0.25rem;
             color: var(--on-surface);
             line-height: 0.4;
+            opacity: unset;
         }
     }
 
@@ -45,6 +46,7 @@ textfield {
         left: 2rem;
         color: var(--on-surface);
         background-color: var(--surface);
+        opacity: 0.85;
     }
 
     &[icon] {
