@@ -20,7 +20,7 @@ textfield {
         /* clip-path: polygon(1.5rem 30%, 50% 30%, 50% -0.15rem, 110% -0.15rem, 110% 110%, -0.15rem 110%, -0.15rem -0.15rem, 1.5rem -0.15rem); */
         
         &::after {
-            margin-top: -1.2rem;
+            transform: translateY(-1.2rem);
             height: 0.25rem;
             padding: 0 0.25rem;
             color: var(--on-surface);
@@ -39,7 +39,7 @@ textfield {
     
     &::after {
         content: attr(title);
-        transition: margin-top cubic-bezier(0.5, 0, 0, 1) 0.2s;
+        transition: transform cubic-bezier(0.5, 0, 0, 1) 0.2s;
         position: absolute;
         height: 0;
         margin-top: 0;
