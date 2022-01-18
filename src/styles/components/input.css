@@ -1,0 +1,82 @@
+textfield {
+    display: block;
+    height: 1.4rem;
+    margin: 1rem 0.5rem 1rem 0;
+    padding: 1rem;
+    border: none;
+    border-radius: var(--border-radius);
+    outline: var(--outline);
+    color: transparent;
+    caret-color: var(--primary);
+    background: none;
+    font-size: inherit;
+    font-family: inherit;
+    white-space: nowrap;
+    overflow-x: hidden;
+    cursor: text;
+    
+    &:focus, &:not([empty]) {
+        color: var(--on-surface);
+        /* clip-path: polygon(1.5rem 30%, 50% 30%, 50% -0.15rem, 110% -0.15rem, 110% 110%, -0.15rem 110%, -0.15rem -0.15rem, 1.5rem -0.15rem); */
+        
+        &::after {
+            margin-top: -1.2rem;
+            height: 0.25rem;
+            padding: 0 0.25rem;
+            color: var(--on-surface);
+            font-size: 0.75rem;
+            line-height: 0.4;
+        }
+    }
+
+    &:focus {
+        outline: solid var(--primary) 0.125rem;
+        
+        &::after {
+            color: var(--primary);
+        }
+    }
+    
+    &::after {
+        content: attr(title);
+        transition: margin-top cubic-bezier(0.5, 0, 0, 1) 0.2s;
+        position: absolute;
+        height: 0;
+        margin-top: 0;
+        left: 2rem;
+        color: var(--on-surface);
+        background-color: var(--surface);
+    }
+
+    &[icon] {
+        margin-left: 3rem;
+
+        &::before {
+            content: attr(icon);
+            position: absolute;
+            left: 1.25rem;
+            color: var(--on-surface);
+            opacity: 0.8;
+            font-size: 1.5rem;
+            font-family: 'Material Icons Outlined';
+        }
+
+        &::after {
+            left: 5rem;
+        }
+    }
+    
+    * {
+        display: inline;
+    }
+
+    br {
+        display: none;
+    }
+}
+
+/* input {
+    &[type="text"] {
+        
+    }
+} */

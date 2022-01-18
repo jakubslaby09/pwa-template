@@ -21,6 +21,9 @@ const conditions = {
     page(e: Element) {
         return !!e.getAttribute('page')
     },
+    textfield(e: Element) {
+        return e.nodeName == 'TEXTFIELD'
+    }
 }
 
 const modifications: Modification[] = [
@@ -53,11 +56,28 @@ const modifications: Modification[] = [
     {
         if: conditions.page,
         then(e: HTMLElement) {
-            e.onclick = (() => {
+            e.onclick = () => {
                 const name = e.getAttribute('page')
                 if(!name) return
                 stack.bottom = name
-            })
+            }
+        }
+    },
+    {
+        if: conditions.textfield,
+        then(e: HTMLElement) {
+            e.setAttribute('contenteditable', '')
+
+            const update = async () => e.innerText == ''
+            ?  e.setAttribute('empty', '')
+            :  e.removeAttribute('empty')
+
+            update()
+            e.oninput = update
+            /* e.onchange = () => console.log('test'); */
+            /* const root = e.attachShadow({
+                mode: 'closed'
+            }) */
         }
     },
 ]

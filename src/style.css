@@ -10,6 +10,7 @@
 @import "styles/components/button.css";
 @import "styles/components/dialog.css";
 @import "styles/components/card.css";
+@import "styles/components/input.css";
 
 html {
   display: initial !important; /* CLS */
