@@ -20,11 +20,10 @@ textfield {
         /* clip-path: polygon(1.5rem 30%, 50% 30%, 50% -0.15rem, 110% -0.15rem, 110% 110%, -0.15rem 110%, -0.15rem -0.15rem, 1.5rem -0.15rem); */
         
         &::after {
-            transform: translateY(-1.2rem);
+            transform: translate(-1rem, -1.2rem) scale(0.75);
             height: 0.25rem;
             padding: 0 0.25rem;
             color: var(--on-surface);
-            font-size: 0.75rem;
             line-height: 0.4;
         }
     }
