@@ -1,6 +1,6 @@
 input[type="text"][outlined],
 input[type="password"][outlined],
-input[type="number"],
+input[type="number"][outlined],
 textfield {
     display: block;
     height: 1.4rem;
