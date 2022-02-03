@@ -96,7 +96,13 @@ async function activateLinks(view: string) {
 }
 
 async function insert(view: string, bottom = true) {
-    elements.main.innerHTML = await request(`/views/${view}.html`)
+    const page = await request(`/views/${view}.html`)
+
+    const main = page.match(/(<main>|<main\s([\s\S]*)>)([\s\S]*)<\/main>/)
+
+    if(main) elements.main.outerHTML = main[0]
+    else elements.main.innerHTML = page
+
     
     if(!bottom) {
         const header = elements.main.querySelector('header')
