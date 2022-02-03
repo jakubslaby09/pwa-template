@@ -100,8 +100,7 @@ interface Modification {
 const observer = new MutationObserver(records => {
     records.forEach(record => {
         record.addedNodes.forEach(
-            node => node.nodeName != '#text' ? 
-                initnode(node as Element) : 0
+            node => !node.nodeName.startsWith('#') ? initnode(node as Element) : null
         )
     })
 })
