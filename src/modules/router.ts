@@ -4,8 +4,6 @@ const root = location.origin
         + (document.querySelector('head > link[rel="root"]')?.getAttribute('href') ?? '/')
 fixFetch()
 
-console.log(root);
-
 
 //self.caches?.delete('views') // delete on refresh
 
