@@ -111,7 +111,6 @@ async function insert(view: string, bottom = true) {
         header.prepend(document.createElement('button'))
         header.children[0]!.outerHTML = '<button icon navback>arrow_back</button>'
         header.children[0]!.addEventListener('click', () => history.back())
-        
     }
 }
 
