@@ -24,11 +24,11 @@
       <input type="text" placeholder="Search nothing">
       <button 
         icon
-        x-on:click="light = !light; sounds.shutter()"
+        @click="light = !light; sounds.shutter()"
         x-text="light ? 'light_mode' : 'dark_mode'"
         :rotate="light"
       />
-      <button icon x-on:click="appmenu = true">more_vert</button>
+      <button icon @click="appmenu = true">more_vert</button>
     </header>
     <nav>
       <a page="benchmark" icon="speed">Benchmark</a>
@@ -37,7 +37,7 @@
     </nav>
     <main id="main"></main>
     <dialog appmenu :active="appmenu">
-      <div scrim x-on:click="appmenu = false"></div>
+      <div scrim @click="appmenu = false"></div>
       <title>Menu Title</title>
       <div icon="notes">
         <title>Some notes</title>
@@ -47,7 +47,7 @@
         <p>Lorem, ipsum dolor.</p>
       </div>
       <div>
-        <button icon="settings" view="settings" x-on:click="appmenu = false">Settings & Preferences</button>
+        <button icon="settings" view="settings" @click="appmenu = false">Settings & Preferences</button>
         <button icon="update" :disabled="!navigator.onLine" onclick="updateCaches(); sounds.refresh()">
           Clear Offline Caches
         </button>

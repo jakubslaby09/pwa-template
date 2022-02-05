@@ -22,11 +22,11 @@
       <input type="text" placeholder="Search nothing">
       <button 
         icon
-        x-on:click="light = !light"
+        @click="light = !light"
         x-text="light ? 'light_mode' : 'dark_mode'"
         :rotate="light"
       />
-      <button icon x-on:click="appmenu = true">more_vert</button>
+      <button icon @click="appmenu = true">more_vert</button>
     </header>
     <nav>
       <a page="about" icon="star_border">Oblíbené</a>
@@ -35,7 +35,7 @@
     </nav>
     <main id="main"></main>
     <dialog appmenu :active="appmenu">
-      <div scrim x-on:click="appmenu = false"></div>
+      <div scrim @click="appmenu = false"></div>
       <title>Menu Title</title>
       <div icon="notes">
         <title>Some notes</title>
