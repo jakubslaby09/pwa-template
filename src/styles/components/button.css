@@ -71,6 +71,30 @@ button {
         body > main:first-of-type > & {
             bottom: 6rem;
         }
+        body > main > &:not(:first-of-type) {
+            display: none;
+            margin-right: 0.67rem;
+            margin-bottom: calc(6rem + var(--i) * 4rem);
+            background-color: var(--surface);
+            color: var(--primary);
+            animation: button-fab-show calc(0.5s + var(--i) * 0.2s) cubic-bezier(0, 1, 0, 1);
+
+            &:nth-of-type(2) {
+                --i: 0;
+                box-shadow: #0008 0 0 0 max(142vh, 142vw);
+            }
+            
+            &:nth-of-type(3) {
+                --i: 1;
+            }
+            
+            &:nth-of-type(4) {
+                --i: 2;
+            }
+        }
+        body > main > &:focus ~ & {
+            display: unset;
+        }
     }
 
     &[icon=""] {
@@ -118,5 +142,16 @@ button {
     }
     to {
         
+    }
+}
+
+@keyframes button-fab-show {
+    from {
+        display: unset;
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        display: unset;
     }
 }
