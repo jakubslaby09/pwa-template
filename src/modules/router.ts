@@ -1,7 +1,11 @@
 import * as sounds from "./sound"
 
-const root = location.origin
-        + (document.querySelector('head > link[rel="root"]')?.getAttribute('href') ?? '/')
+/* const root = location.origin
++ (document.querySelector('head > link[rel="root"]')?.getAttribute('href') ?? '/') */
+let root = new URL(
+    (document.querySelector('head > link[rel="root"]')?.getAttribute('href') ?? '/'),
+    location.href
+).href
 fixFetch()
 
 
@@ -32,7 +36,9 @@ const stack = {
     get values() {
         return [
             this._bottom,
-            ...location.href.replace(root, '').split('/').filter(n => n != '')
+            ...location.href.replace(root, '')
+                .split('/')
+                .filter(n => n != '')
         ]
     },
 
