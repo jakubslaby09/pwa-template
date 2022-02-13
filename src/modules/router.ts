@@ -6,7 +6,9 @@ let root = new URL(
     (document.querySelector('head > link[rel="root"]')?.getAttribute('href') ?? '/'),
     location.href
 ).href
+if(root.slice(-1) == '/') root = root.slice(0, -1)
 fixFetch()
+
 
 
 //self.caches?.delete('views') // delete on refresh
