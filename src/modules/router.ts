@@ -6,26 +6,25 @@ fixFetch()
 
 
 
-const location = {
-    ...window.location,
+const path = {
     get root() {
         let path = new URL(
             (document.querySelector('head > link[rel="root"]')?.getAttribute('href') ?? '/'),
-            window.location.href
+            location.href
         ).pathname
         if(path.slice(-1) == '/') path = path.slice(0, -1)
         return path
     },
     get pathname(): string { // e.g. /example?123/item?2/details
-        return window.location.pathname.replace(location.root, '')
-        + window.location.search
+        return location.pathname.replace(path.root, '')
+        + location.search
     },
 }
 
-Object.defineProperty(window.location, 'params', { get() {
+Object.defineProperty(location, 'params', { get() {
     let params = { }
     
-    location.pathname.split('/').forEach(pair => {
+    path.pathname.split('/').forEach(pair => {
         const page = pair.split('?')[0]
         const param = pair.split('?')[1]
         if(param) params = {
@@ -62,7 +61,7 @@ const stack = {
     get values() {
         return [
             this._bottom,
-            ...location.pathname
+            ...path.pathname
                 .split('/')
                 .filter(n => n != '')
                 .map(layer => layer.split('?')[0])
@@ -199,10 +198,10 @@ function fixFetch() {
             return oldFetch(input, init)
         }
         
-        const path = new URL(
+        const url = new URL(
             input.slice(1),
-            location.origin + location.root
+            location.origin + path.root
         ).href
-        return oldFetch(path, init)
+        return oldFetch(url, init)
     }
 }
