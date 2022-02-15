@@ -200,7 +200,7 @@ function fixFetch() {
         
         const url = new URL(
             input.slice(1),
-            location.origin + path.root
+            location.origin + path.root + '/'
         ).href
         return oldFetch(url, init)
     }
