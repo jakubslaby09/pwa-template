@@ -18,7 +18,7 @@
     <meta name="description" content="A lightweight template for a PWA with Material-looking styles.">
     <script src="//unpkg.com/alpinejs" defer></script>
     <title>Vanilla PWA Template</title>
-    <script type="module" crossorigin src="/pwa-template/bundle/index.8a1d2f52.js"></script>
+    <script type="module" crossorigin src="/pwa-template/bundle/index.309045f8.js"></script>
     <link rel="stylesheet" href="/pwa-template/bundle/index.0fde378f.css">
   </head>
   <body>
@@ -49,7 +49,7 @@
         <p>Lorem, ipsum dolor.</p>
       </div>
       <div>
-        <button icon="settings" view="settings" @click="appmenu = false">Settings & Preferences</button>
+        <button icon="settings" view="settings?test value 2" @click="appmenu = false">Settings & Preferences</button>
         <button icon="update" :disabled="!navigator.onLine" onclick="updateCaches(); sounds.refresh()">
           Clear Offline Caches
         </button>
