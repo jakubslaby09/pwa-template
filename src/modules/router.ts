@@ -22,6 +22,21 @@ const location = {
     },
 }
 
+Object.defineProperty(window.location, 'params', { get() {
+    let params = { }
+    
+    location.pathname.split('/').forEach(pair => {
+        const page = pair.split('?')[0]
+        const param = pair.split('?')[1]
+        if(param) params = {
+            ...params,
+            [page]: param
+        }
+    })
+
+    return params
+}})
+
 const elements = {
     get mains() { return document.querySelectorAll('body > main') },
     get main() { return this.mains[this.mains.length - 1] as HTMLElement },
