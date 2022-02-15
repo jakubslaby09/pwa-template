@@ -30,7 +30,7 @@ Object.defineProperty(window.location, 'params', { get() {
         const param = pair.split('?')[1]
         if(param) params = {
             ...params,
-            [page]: param
+            [page]: decodeURIComponent(param)
         }
     })
 
