@@ -47,7 +47,7 @@
         <p>Lorem, ipsum dolor.</p>
       </div>
       <div>
-        <button icon="settings" view="settings" @click="appmenu = false">Settings & Preferences</button>
+        <button icon="settings" view="settings?test value 2" @click="appmenu = false">Settings & Preferences</button>
         <button icon="update" :disabled="!navigator.onLine" onclick="updateCaches(); sounds.refresh()">
           Clear Offline Caches
         </button>
