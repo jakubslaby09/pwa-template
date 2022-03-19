@@ -105,11 +105,11 @@ const stack = {
             elements.main.remove()
             
         else animations.afterload()
+        await insert(this.top, !!this.bottom)
         animations.fullview(!!this.bottom)
         activateLinks(this.top)
-        insert(this.top, !!this.bottom)
-        .then(() => console.timeEnd('applystack'))
-
+        console.timeEnd('applystack')
+        
         
     }
 }
