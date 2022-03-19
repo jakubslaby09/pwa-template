@@ -27,7 +27,6 @@ body > main {
 }
 @keyframes main-nav-open {
   from {
-    opacity: 0;
     transform: translateY(10%) scale(0.95);
   }
 }
