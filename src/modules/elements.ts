@@ -10,7 +10,6 @@ const conditions = {
             /* || (e.nodeName == 'INPUT'
                 && e.getAttribute('type') == 'submit'
             ) */
-            || false
     },
     dialog(e: Element) {
         return e.nodeName == 'DIALOG'
@@ -86,9 +85,12 @@ const modifications: Modification[] = [
 function ripple(element: Element, delay: number = 0) {
     if(element.getAttribute('disabled') != null) return
     element.removeAttribute('afterclick')
-                setTimeout(() => 
-                    element.setAttribute('afterclick', '')
-                , delay)
+    setTimeout(() => 
+        element.setAttribute('afterclick', '')
+    , delay)
+    setTimeout(() => 
+        element.removeAttribute('afterclick')
+    , delay + 1000)
     tap()
 }
 
