@@ -4,18 +4,18 @@ body > main {
   inset: 0;
   padding: 1rem;
   overflow-x: hidden;
-
-  &[afterload] {
-    animation: main-nav-open 0.5s cubic-bezier(0, 1, 0, 1);
-  }
-
+  
   &:not(:first-of-type) {
     padding-top: 5rem;
     background-color: var(--background);
-  
+    
     &[afterload] {
       animation: main-open 0.25s cubic-bezier(0, 0.5, 0, 1);
     }
+  }
+  
+  &:last-of-type {
+    animation: main-nav-open 0.5s cubic-bezier(0, 1, 0, 1);
   }
 }
 
@@ -28,6 +28,6 @@ body > main {
 @keyframes main-nav-open {
   from {
     opacity: 0;
-    transform: translateY(10%);
+    transform: translateY(10%) scale(0.95);
   }
 }
