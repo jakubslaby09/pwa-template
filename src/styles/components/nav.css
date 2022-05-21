@@ -65,11 +65,11 @@ nav {
     transition: transform 1s cubic-bezier(0, 0.7, 0, 1);
     transform: translateY(100%);
     
-    ~ #main {
+    ~ main:first-of-type {
       bottom: 0;
     }
   }
-  ~ #main {
+  + main {
     bottom: 5rem;
   }
 }
