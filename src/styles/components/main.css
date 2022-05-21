@@ -11,6 +11,7 @@ body > main {
     background: var(--background);
     overflow-x: hidden;
     z-index: 1;
+    animation: 0.25s cubic-bezier(0, 0.5, 0, 1) main-open;
 
     &:first-of-type {
         top: 4rem;
@@ -20,10 +21,6 @@ body > main {
         &[afteropen] {
             animation-name: main-bottom-open;
         }
-    }
-    
-    & {
-        animation: 0.25s cubic-bezier(0, 0.5, 0, 1) main-open;
     }
     
     &[afterland] {
