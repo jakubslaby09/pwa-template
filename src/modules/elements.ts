@@ -1,126 +1,66 @@
-import stack from "./router"
-import { tap } from "./sound"
+import stack from './router'
+import { animations } from './animations'
 
-const conditions = {
-    ripple(e: Element) {
-        return e.getAttribute('ripple') != null
-            || e.getAttribute('page') != null
-            || e.nodeName == 'BUTTON'
-            || e.nodeName == 'HEADER'
-            /* || (e.nodeName == 'INPUT'
-                && e.getAttribute('type') == 'submit'
-            ) */
+const modifications = {
+    '[ripple], [page], button, header' (e) {
+        e.addEventListener('pointerdown', () => animations.ripple(e))
+        e.addEventListener('keydown', event => {
+            if((event as KeyboardEvent).key == 'Enter') animations.ripple(e, 10)
+        })
     },
-    dialog(e: Element) {
-        return e.nodeName == 'DIALOG'
+    'dialog' (e) {
+        e.setAttribute('open', '')
     },
-    view(e: Element) {
-        return !!e.getAttribute('view')
+    '[view]' (e) {
+        e.onclick = (() => {
+            const name = e.getAttribute('view')
+            if(!name) return
+            stack.push(name)
+        })
     },
-    page(e: Element) {
-        return !!e.getAttribute('page')
+    '[page]' (e) {
+        e.onclick = () => {
+            const name = e.getAttribute('page')
+            if(!name) return
+            stack.bottom = name
+        }
     },
-    textfield(e: Element) {
-        return e.nodeName == 'TEXTFIELD'
+    'textfield' (e) {
+        e.setAttribute('contenteditable', '')
+
+        const update = async () => e.innerText == ''
+        ?  e.setAttribute('empty', '')
+        :  e.removeAttribute('empty')
+
+        update()
+        e.oninput = update
+    },
+} as { [selector: string]: (e: HTMLElement) => any }
+
+
+function init(element: Element) {
+    //const element = (node as any).matches ? node as HTMLElement : null
+    
+    for (const selector in modifications) {
+        if(element?.matches(selector)) modifications[selector](element as HTMLElement)
+    }
+
+    for(const i in element.children) {
+        const child = element.children[i]
+        if(!!child.getAttribute) init(child)
     }
 }
 
-const modifications: Modification[] = [
-    {
-        if: conditions.ripple,
-        then(e) {
-            e.addEventListener('pointerdown', () => ripple(e))
-            e.addEventListener('keydown', event => {
-                if((event as KeyboardEvent).key == 'Enter')
-                    ripple(e, 10)
-            })
-        }
-    },
-    {
-        if: conditions.dialog,
-        then(e) {
-            e.setAttribute('open', '')
-        }
-    },
-    {
-        if: conditions.view,
-        then(e: HTMLElement) {
-            e.onclick = (() => {
-                const name = e.getAttribute('view')
-                if(!name) return
-                stack.push(name)
-            })
-        }
-    },
-    {
-        if: conditions.page,
-        then(e: HTMLElement) {
-            e.onclick = () => {
-                const name = e.getAttribute('page')
-                if(!name) return
-                stack.bottom = name
-            }
-        }
-    },
-    {
-        if: conditions.textfield,
-        then(e: HTMLElement) {
-            e.setAttribute('contenteditable', '')
+document.querySelectorAll('body *').forEach(node => init(node))
 
-            const update = async () => e.innerText == ''
-            ?  e.setAttribute('empty', '')
-            :  e.removeAttribute('empty')
-
-            update()
-            e.oninput = update
-            /* e.onchange = () => console.log('test'); */
-            /* const root = e.attachShadow({
-                mode: 'closed'
-            }) */
-        }
-    },
-]
-
-
-function ripple(element: Element, delay: number = 0) {
-    if(element.getAttribute('disabled') != null) return
-    element.removeAttribute('afterclick')
-    setTimeout(() => 
-        element.setAttribute('afterclick', '')
-    , delay)
-    setTimeout(() => 
-        element.removeAttribute('afterclick')
-    , delay + 1000)
-    tap()
-}
-
-interface Modification {
-    if: (e: Element) => boolean
-    then: (e: Element) => void
-}
-
-const observer = new MutationObserver(records => {
-    records.forEach(record => {
-        record.addedNodes.forEach(
-            node => !node.nodeName.startsWith('#') ? initnode(node as Element) : null
+const observer = new MutationObserver(records =>
+    records.forEach(record =>
+        record.addedNodes.forEach(node => 
+            (node as any).matches && init(node as HTMLElement)
         )
-    })
-})
-
+    )
+)
 observer.observe(document.body, {
     childList: true,
     subtree: true
 })
-
-document.querySelectorAll('body *').forEach(node => initnode(node))
-
-function initnode(element: Element) {
-    modifications.forEach(m => {
-        if(m.if(element)) m.then(element)
-    })
-
-    for(const i in element.children) {
-        const child = element.children[i]
-        if(!!child.getAttribute) initnode(child)
-    }
-}

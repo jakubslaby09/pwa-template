@@ -1,32 +1,55 @@
+body {
+    overflow: hidden;
+}
+
 body > main {
-  position: absolute;
-  border: none;
-  inset: 0;
-  padding: 1rem;
-  overflow-x: hidden;
-  
-  &:not(:first-of-type) {
+    position: absolute;
+    border: none;
+    inset: 0;
+    padding: 1rem;
     padding-top: 5rem;
-    background-color: var(--background);
-    
-    &[afterload] {
-      animation: main-open 0.25s cubic-bezier(0, 0.5, 0, 1);
+    background: var(--background);
+    overflow-x: hidden;
+    z-index: 1;
+
+    &:first-of-type {
+        top: 4rem;
+        padding-top: unset;
+        z-index: unset;
+        
+        &[afteropen] {
+            animation-name: main-bottom-open;
+        }
     }
-  }
-  
-  &:last-of-type {
-    animation: main-nav-open 0.5s cubic-bezier(0, 1, 0, 1);
-  }
+    
+    & {
+        animation: 0.25s cubic-bezier(0, 0.5, 0, 1) main-open;
+    }
+    
+    &[afterland] {
+        animation: 0.25s cubic-bezier(0, 0.5, 0, 1) main-land;
+    }
+}
+
+@keyframes main-bottom-open {
+    from {
+        transform: translateY(10%);
+    }
 }
 
 @keyframes main-open {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
 }
-@keyframes main-nav-open {
-  from {
-    transform: translateY(10%) scale(0.95);
-  }
+@keyframes main-land {
+    from {
+      transform: scale(1.1);
+    }
 }
+/* @keyframes main-nav-open {
+    from {
+      transform: translateY(10%) scale(0.95);
+    }
+} */

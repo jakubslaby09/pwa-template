@@ -1,5 +1,4 @@
-[ripple], nav > *, body > header, 
-button, input[type="submit"] {
+[ripple], nav > *, body > header, button, input[type="submit"] {
   overflow: hidden;
   position: relative;
   cursor: pointer;

@@ -1,9 +1,9 @@
+import { animations } from "./animations"
 import * as sounds from "./sound"
 
 fixFetch()
 
 //self.caches?.delete('views') // delete on refresh
-
 
 
 const path = {
@@ -42,17 +42,6 @@ const elements = {
     nav: document.querySelector('body > nav') as HTMLElement,
     links: document.querySelectorAll('body > nav > [page]'),
     header: document.querySelector('body > header') as HTMLElement,
-}
-
-const animations = {
-    async afterload() {
-        elements.main.removeAttribute('afterload')
-        setTimeout(() => elements.main.setAttribute('afterload', ''), 0)
-    },
-    async fullview(remove = false) {
-        if(remove) document.body.removeAttribute('fullview')
-        else document.body.setAttribute('fullview', '')
-    }
 }
 
 const stack = {
@@ -101,12 +90,13 @@ const stack = {
                 elements.main.insertAdjacentHTML('afterend', '<main/>')
         })
 
-        if(elements.mains.length > this.values.length) 
+        if(elements.mains.length > this.values.length) {
             elements.main.remove()
-            
-        else animations.afterload()
+            animations.land(elements.main)
+        }
+        
+        else animations.open(elements.main)
         await insert(this.top, !!this.bottom)
-        animations.fullview(!!this.bottom)
         activateLinks(this.top)
         console.timeEnd('applystack')
         
@@ -128,6 +118,7 @@ async function activateLinks(view: string) {
 }
 
 async function insert(view: string, bottom = true) {
+    if(!bottom && elements.main.children.length) return
     const page = await request(`/views/${view}.html`)
 
     const main = page.match(/(<main>|<main\s([\s\S]*?)>)([\s\S]*?)<\/main>/)
@@ -145,39 +136,6 @@ async function insert(view: string, bottom = true) {
         header.children[0]!.addEventListener('click', () => history.back())
     }
 }
-
-/* async function go(view: string, layer = 0) {
-    document.body.removeAttribute('fullview')
-
-    elements.main.removeAttribute('afterload')
-    setTimeout(() => elements.main.setAttribute('afterload', ''), 0)
-    
-    elements.main.innerHTML = await request(`/views/${view}.html`)
-
-    document.querySelectorAll('[page]').forEach(
-        e => e.getAttribute('page') == view
-            ? e.setAttribute('active', '')
-            : e.removeAttribute('active')
-    )
-
-    if(!stack.bottom) {
-        document.body.setAttribute('fullview', '')
-        cleanup('afterclick')
-    
-        if(layer != 0) {
-            const viewheader = elements.mains[layer].querySelector('header')
-            if(viewheader) viewheader.innerHTML = 
-            `<button icon navback>arrow_back</button>` + viewheader?.innerHTML;
-            const navback = viewheader?.querySelector('[navback]') as HTMLElement | undefined
-            if(navback) navback.onclick = () => history.back()
-        }
-    }
-}
-
-elements.links.forEach(link => link.addEventListener('click', () => {
-    if(stack.bottom) stack.bottom = link.getAttribute('page')!
-    sounds.navigate()
-})) */
 
 async function request(url: string) {
     const cache = await self.caches?.open('views') as Cache | undefined // compatibility
