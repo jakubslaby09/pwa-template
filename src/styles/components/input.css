@@ -83,3 +83,81 @@ textfield {
         display: none;
     }
 }
+
+input[type="checkbox"] {
+    position: relative;
+    width: 0;
+    height: 0;
+    margin: calc(12px + 1rem) calc(12px + 1rem) calc(12px + 1rem) calc(12px);
+    vertical-align: middle;
+    color: var(--on-surface);
+    overflow: visible;
+    z-index: 1;
+
+    &::after {
+        margin: -18px;
+        width: 31px;
+        height: 31px;
+        z-index: -1;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        margin: -12px;
+        width: 20px;
+        height: 20px;
+        border: var(--outline);
+        border-width: 2px;
+        border-radius: 2px;
+        animation: checkbox-uncheck 0.2s cubic-bezier(0, 0.5, 0, 1);
+    }
+    
+    &:checked::before {
+        content: "checked";
+        color: var(--on-primary);
+        background-color: var(--primary);
+        border-color: var(--primary);
+        font-family: "Material Icons";
+        font-size: 20px;
+        animation: checkbox-check 0.3s cubic-bezier(0, 0, 0, 1);
+    }
+
+    &, + label {
+        cursor: pointer;
+        user-select: none;
+    }
+}
+
+@keyframes checkbox-check {
+    from {
+        content: "";
+        clip-path: polygon(50% 100%, 0% 100%, 0% 0%, 100% 0%, 100% 100%, 50% 100%, 50% 90%, 90% 90%, 90% 10%, 10% 10%, 10% 90%, 50% 90%);
+    }
+    49% {
+        content: "";
+        clip-path: polygon(50% 100%, 0% 100%, 0% 0%, 100% 0%, 100% 100%, 50% 100%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+    }
+    50% {
+        content: "";
+        clip-path: polygon(50% 50%, 50% 100%, 0% 100%, 0% 0%, 100% 0%, 100% 100%, 50% 100%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+    }
+    60% {
+        content: "";
+        clip-path: polygon(40% 74%, 50% 100%, 0% 100%, 0% 0%, 100% 0%, 100% 100%, 50% 100%, 40% 74%, 44% 70%, 40% 65%, 40% 65%, 25% 50%, 20% 55%);
+    }
+    to {
+        content: "";
+        clip-path: polygon(40% 74%, 50% 100%, 0% 100%, 0% 0%, 100% 0%, 100% 100%, 50% 100%, 40% 74%, 82% 32%, 77% 27%, 40% 65%, 25% 50%, 20% 55%);
+    }
+}
+@keyframes checkbox-uncheck {
+    from {
+        background-color: var(--outline-color);
+        clip-path: polygon(50% 100%, 0% 100%, 0% 0%, 100% 0%, 100% 100%, 50% 100%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+    }
+    to {
+        background-color: var(--outline-color);
+        clip-path: polygon(50% 100%, 0% 100%, 0% 0%, 100% 0%, 100% 100%, 50% 100%, 50% 90%, 90% 90%, 90% 10%, 10% 10%, 10% 90%, 50% 90%);
+    }
+}

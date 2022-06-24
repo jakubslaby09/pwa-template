@@ -86,6 +86,8 @@
     <input outlined type="text" placeholder="Default text input">
     <input outlined type="password" placeholder="Password input">
     <input outlined type="number" placeholder="Number input">
+
+    <input type="checkbox" id="checkbox"><label for="checkbox">Checkbox</label>
     
     <h4>Custom elements</h4>
     <textfield title="Text field">Lorem, ipsum dolor.</textfield>
@@ -98,12 +100,13 @@
 <section id="themes">
 
     <h2>Dark & Light themes</h2>
-    <button secondary onclick="document.documentElement.setAttribute('light', '')">
+    <!-- <button secondary onclick="document.documentElement.setAttribute('light', '')">
         Light
     </button>
     <button secondary onclick="document.documentElement.removeAttribute('light')">
         Dark
-    </button>
+    </button> -->
+    <input type="checkbox" x-model="light" id="light-switch"><label for="light-switch">Light Theme</label>
     
 </section>
 
