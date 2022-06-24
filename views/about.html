@@ -90,20 +90,24 @@
     <h4>Custom elements</h4>
     <textfield title="Text field">Lorem, ipsum dolor.</textfield>
     <textfield title="Text field"></textfield>
-    
     <textfield title="Text field with an icon" icon="text_fields">Lorem, ipsum dolor.</textfield>
     <textfield title="Text field with an icon" icon="person"></textfield>
+    
+    <h3>Binary inputs</h3>
+    <input type="checkbox" id="checkbox"><label for="checkbox">Checkbox</label><br>
+    <input type="checkbox" switch id="switch"><label for="switch">Switch</label>
 </section>
 
 <section id="themes">
 
     <h2>Dark & Light themes</h2>
-    <button secondary onclick="document.documentElement.setAttribute('light', '')">
+    <!-- <button secondary onclick="document.documentElement.setAttribute('light', '')">
         Light
     </button>
     <button secondary onclick="document.documentElement.removeAttribute('light')">
         Dark
-    </button>
+    </button> -->
+    <input type="checkbox" x-model="light" switch id="light-switch"><label for="light-switch">Light Theme</label>
     
 </section>
 

@@ -18,8 +18,8 @@
     <meta name="description" content="A lightweight template for a PWA with Material-looking styles.">
     <script src="//unpkg.com/alpinejs" defer></script>
     <title>Vanilla PWA Template</title>
-    <script type="module" crossorigin src="/pwa-template/bundle/index.15b4fe07.js"></script>
-    <link rel="stylesheet" href="/pwa-template/bundle/index.d72735b4.css">
+    <script type="module" crossorigin src="/pwa-template/bundle/index.f81ae61c.js"></script>
+    <link rel="stylesheet" href="/pwa-template/bundle/index.ef2cdb91.css">
   </head>
   <body>
     <header icon="search">
@@ -33,9 +33,15 @@
       <button icon @click="appmenu = true">more_vert</button>
     </header>
     <nav>
+      <h4>Nav Header</h4>
       <a page="benchmark" icon="speed">Benchmark</a>
       <a page="home" icon="home">Home</a>
       <a page="about" icon="notes">About project</a>
+      <hr>
+      <h5>Labels</h5>
+      <a page="" icon="circle">Label</a>
+      <a page="" icon="change_history">Label</a>
+      <a page="" icon="square">Label</a>
     </nav>
     <main></main>
     <dialog appmenu :active="appmenu">
