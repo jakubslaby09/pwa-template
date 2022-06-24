@@ -6,8 +6,8 @@ header, body > header {
     right: 0;
     margin: 0.5rem;
     padding: 0.3rem 0 0.3rem 1rem;
-    border-radius: var(--border-radius);
-    background-color: var(--surface);
+    border-radius: 1.5rem;
+    background-color: var(--surface-variant);
     color: var(--on-surface);
     user-select: none;
     cursor: default;
@@ -75,12 +75,4 @@ header, body > header {
         z-index: 1;
         opacity: 0.8;
     }
-
-    ~ #main {
-        top: 4rem;
-    }
-}
-
-body[fullview] > header {
-    opacity: 0;
 }
