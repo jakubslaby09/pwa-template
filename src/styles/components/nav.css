@@ -77,7 +77,11 @@ body > nav {
             flex-grow: 0;
         }
 
-        ~ main:first-of-type, ~ header {
+        ~ main:first-of-type {
+            left: 80px;
+        }
+
+        @at-root body > header:is(header) {
             left: 80px;
         }
     }
@@ -123,7 +127,11 @@ body > nav {
             display: flex;
         }
         
-        ~ main:first-of-type, ~ header {
+        ~ main:first-of-type {
+            left: 360px;
+        }
+        
+        @at-root body > header:is(header) {
             left: 360px;
         }
     }
