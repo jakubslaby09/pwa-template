@@ -6,6 +6,9 @@ export default defineConfig({
   server: {
       host: true,
   },
+  preview: {
+    port: 5000,
+  },
   publicDir: './public',
   build: {
     target: 'es2021',
