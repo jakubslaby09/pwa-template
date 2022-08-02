@@ -18,10 +18,11 @@ button {
         color: var(--on-primary);
         background-color: var(--primary);
         
-        &[secondary] {
-            color: var(--on-primary-container);
-            background-color: var(--primary-container);
-        }
+    }
+    
+    &[tonal] {
+        color: var(--on-primary-container);
+        background-color: var(--primary-container);
     }
 
     &[outlined] {
