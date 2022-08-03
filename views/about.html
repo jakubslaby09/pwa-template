@@ -10,7 +10,7 @@
 </section>
 
 <h3>Buttons</h3>
-<section id="buttons" x-data="{ rotate: false }">
+<section id="buttons" x-data="{ thumb: false, sync: true, settings: false }">
 
     <button fab large>edit</button>
     <button fab>edit</button>
@@ -20,13 +20,13 @@
     <button tonal>Enabled</button>
     <button outlined>Enabled</button>
 
-    <button icon>edit</button>
-    <button
-        icon
-        :rotate="rotate"
-        x-text="rotate ? 'sync_problem' : 'sync'"
-        @click="rotate = !rotate"
-    ></button>
+    <button icon filled toggle :active="sync" @click="sync = !sync">settings</button>
+    <button icon tonal>settings</button>
+    <button icon outlined>settings</button>
+    <button icon toggle :active="thumb" @click="thumb = !thumb">thumb_up</button>
+    <button icon toggle rotate :active="settings" @click="settings = !settings">settings</button>
+    <button icon rotate :active="light" @click="light = !light"
+    x-text="light ? 'light_mode' : 'dark_mode'"/>
     
 </section>
 

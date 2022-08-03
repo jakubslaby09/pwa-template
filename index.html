@@ -26,9 +26,10 @@
       <input type="text" placeholder="Search nothing">
       <button 
         icon
+        rotate
         @click="light = !light; sounds.shutter()"
         x-text="light ? 'light_mode' : 'dark_mode'"
-        :rotate="light"
+        :active="light"
       />
       <button icon @click="appmenu = true">more_vert</button>
     </header>
