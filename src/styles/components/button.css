@@ -135,6 +135,21 @@ button {
         &[rotate][active] {
             transform: rotate(360deg);
         }
+        
+        &[badge]::before {
+            content: "";
+            transition: transform 0.5s cubic-bezier(0, 1, 0, 1);
+            position: absolute;
+            right: 5px;
+            height: 10px;
+            min-width: 10px;
+            border-radius: 50%;
+            background-color: red /* todo */;
+            transform-origin: -50% 120%;
+        }
+        &[badge][rotate][active]::before {
+            transform: rotate(-360deg);
+        }
     }
 }
 
