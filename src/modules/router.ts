@@ -151,8 +151,8 @@ async function request(url: string) {
 
 function fixFetch() {
     const oldFetch = window.fetch
-    window.fetch = (input: RequestInfo, init?: RequestInit) => {
-        if(input instanceof Request || !input.startsWith('/')) {
+    window.fetch = (input: RequestInfo | URL, init?: RequestInit) => {
+        if(typeof input != 'string' || !input.startsWith('/')) {
             return oldFetch(input, init)
         }
         
